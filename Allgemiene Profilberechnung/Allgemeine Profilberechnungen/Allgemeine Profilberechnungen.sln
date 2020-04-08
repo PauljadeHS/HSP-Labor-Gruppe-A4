@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allgemeine Profilberechnungen", "Allgemeine Profilberechnungen\Allgemeine Profilberechnungen.csproj", "{294820F3-E313-44BC-BB3E-62B9C60DAF0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{294820F3-E313-44BC-BB3E-62B9C60DAF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{294820F3-E313-44BC-BB3E-62B9C60DAF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{294820F3-E313-44BC-BB3E-62B9C60DAF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{294820F3-E313-44BC-BB3E-62B9C60DAF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2368A0D6-9410-437E-B7A0-888D4E62F6E7}
+	EndGlobalSection
+EndGlobal
