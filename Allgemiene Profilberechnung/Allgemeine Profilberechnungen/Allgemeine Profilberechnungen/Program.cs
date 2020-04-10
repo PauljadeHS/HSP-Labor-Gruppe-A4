@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Allgemeine_Profilberechnungen
 {
     class Program
     {
         static public void Main(string[] args)
-        {
-            //Eingabe 
+        {        
+              //Eingabe 
             double Breite, Höhe;
             Console.WriteLine("Geben Sie die Breite des Rechteckes in mm an");
             Breite = Convert.ToDouble(Console.ReadLine());
@@ -39,13 +40,13 @@ namespace Allgemeine_Profilberechnungen
             Console.WriteLine("");
             Console.WriteLine("Flächeninhalt = " + Convert.ToString(cc) + "mm^2"); // Ausgabe Flächeninhalt 
             Console.WriteLine(ff); // Ausgabe Flächenschwerpunkt 
-            Console.WriteLine(gg); //Ausgabe IXX
+            Console.WriteLine(gg); // Ausgabe IXX
             Console.WriteLine(hh); // Ausgabe IYY 
             Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
 
             Console.ReadKey();
         }
-
+        #region Rechteckprofil
         static double Flächenberechnung(double Breite, double Höhe)
         {
             double cclokal;
@@ -90,8 +91,53 @@ namespace Allgemeine_Profilberechnungen
 
             return fflk;
         }
+        #endregion Rechteckprofil
+        #region Rechteckhohlprofil
+        static double FlächenberechnungRHK(double Breite, double Höhe, double BreiteInnen, double HöheInnen)
+        {
+            double cclokal;
+            cclokal = Breite * Höhe - BreiteInnen * HöheInnen;
 
+            return cclokal;
+        }
 
+        static string FlächenschwerpunktRHK(double Breite, double Höhe)
+        {
+            double dd, ee;
+
+            dd = Breite / 2;
+            ee = Höhe / 2;
+
+            string ff;
+
+            ff = "Schwerpunktkoordinaten (x:" + Convert.ToString(dd) + " y:" + Convert.ToString(ee) + ")";
+
+            return ff;
+        }
+
+        static string FlächenträgheitsmomentIXXRHK(double Breite, double Höhe, double BreiteInnen, double HöheInnen)
+        {
+            double ix;
+            ix = (Breite * Höhe * Höhe * Höhe - BreiteInnen * HöheInnen* HöheInnen * HöheInnen) / 12;
+
+            string fflk;
+            fflk = String.Format("Flächenträgheitsmoment IXX = {0:00.000}", ix) + "mm^4";
+
+            return fflk;
+        }
+
+        static string FlächentregheitsmomentIYYRHK(double Breite, double Höhe, double BreiteInnen, double HöheInnen)
+        {
+            double iy;
+            iy = (Breite * Breite * Breite * Höhe- BreiteInnen* BreiteInnen* BreiteInnen* HöheInnen) / 12;
+
+            string fflk;
+
+            fflk = String.Format("Flächenträgheitsmoment IYY = {0:00.000}", iy) + "mm^4";
+
+            return fflk;
+        }
+        #endregion Rechteckhohlprofil
     }
 }
     
