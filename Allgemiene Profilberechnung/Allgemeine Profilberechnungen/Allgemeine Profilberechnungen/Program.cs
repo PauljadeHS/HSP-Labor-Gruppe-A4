@@ -147,7 +147,38 @@ namespace Allgemeine_Profilberechnungen
                 #region Kreihohlprofileingabe 
                 else if (Auswahl == 4)
                 {
-                    // Luca 
+                    double Außendurchmesser, Innendurchmesser;
+                    //Eingabe Außendurchmesser
+                    Console.WriteLine("Geben Sie den Außendurchmesser in mm ein");
+                    Außendurchmesser = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+
+                    //Eingabe Innendurchmesser
+                    Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
+                    Console.WriteLine("Geben sie den Innendurchmesser in mm ein");
+                    Innendurchmesser = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+
+                    Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
+                    Console.WriteLine("Innendurchmesser" + Convert.ToDouble(Innendurchmesser) + "mm");
+                    Console.Clear();
+
+                    //Berrechnung Flächeninhalt
+                    double cc = FlächenberechnungKHP(Außendurchmesser, Innendurchmesser);
+                    //Berechnung Flächenschwerpunkt
+                    string fs = FlächenschwerpunktKHP(Außendurchmesser);
+                    //Berechnung Flächenträgheitsmoment IXX, IYY
+                    string ftm = FlächenträgheitsmomenteKHP(Außendurchmesser, Innendurchmesser);
+
+                    //Ausgabe
+                    Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
+                    Console.WriteLine("Innendurchmesser" + Convert.ToDouble(Innendurchmesser) + "mm");
+                    Console.WriteLine("");
+                    Console.WriteLine(cc);//Ausgabe A
+                    Console.WriteLine(fs);//Ausgabe FSP
+                    Console.WriteLine(ftm);//Ausgabe FTM
+
+                    Console.ReadKey();
                 }
                 #endregion Kreisprofileingabe 
                 else
@@ -269,10 +300,42 @@ namespace Allgemeine_Profilberechnungen
             return fflk;
         }
         #endregion Kreis
-        #region Kreisprofil
-        //Luca 
-        #endregion Kreisprofil
+        #region Kreishohlprofil
+        static double FlächenberechnungKHP(double Außendurchmesser, double Innendurchmesser)
+        {
+            double xylokal;
+            xylokal = (Math.PI / 4) * (Außendurchmesser * Außendurchmesser - Innendurchmesser * Innendurchmesser);
 
+            return xylokal;
+        }
+        
+
+        static string FlächenschwerpunktKHP(double Außendurchmesser)
+        {
+            double xs , ys;
+
+            xs = Außendurchmesser / 2;
+            ys = Außendurchmesser / 2;
+
+            string fs;
+
+            fs = "Schwerpunktkoordinaten (xs:" + Convert.ToString(xs) + "ys:" + Convert.ToString(ys) + ")";
+
+            return fs;
+        }
+
+        static string FlächenträgheitsmomenteKHP(double Außendurchmesser, double Innendurchmesser)
+        {
+            double ib;
+
+            ib = (Math.PI / 64) * ((Math.Pow(Außendurchmesser, 4)) - Math.Pow(Innendurchmesser, 4));
+
+            string ftm;
+            ftm = String.Format("Flächenträgheitsmoment IXX = IYY = {0:00.000}", ib) + "mm^4";
+
+            return ftm;
+        }
+        #endregion Kreishohlprofil
     }
 
 }
