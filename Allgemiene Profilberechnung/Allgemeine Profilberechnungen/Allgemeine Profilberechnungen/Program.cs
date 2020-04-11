@@ -90,31 +90,44 @@ namespace Allgemeine_Profilberechnungen
                     Console.WriteLine("Breite Innen = " + BreiteInnen + "mm");
                     Console.WriteLine("Geben Sie die InnenHöhe des Rechteckes in mm an ");
                     HöheInnen = Convert.ToDouble(Console.ReadLine());
+                    
                     Console.Clear();
+                   
+                    // Schleife zur Überprüfung auf Glaubwürdigkeit 
+                   
+                    if (BreiteInnen > Breite && HöheInnen > Höhe )
+                    {
+                        Console.WriteLine("Error: Außenabmessungen müssen größer als die Innenabmessungen sein");
+                    }
 
-                    //Berechnung des Flächeninhaltes 
-                    double cc = FlächenberechnungRHK(Breite, Höhe, BreiteInnen, HöheInnen);
+                    else
+                    {
+                        //Berechnung des Flächeninhaltes 
+                        double cc = FlächenberechnungRHK(Breite, Höhe, BreiteInnen, HöheInnen);
 
-                    //Berechnung des Flächenschwerpunktes
-                    string ff = Flächenschwerpunkt(Breite, Höhe);
+                        //Berechnung des Flächenschwerpunktes
+                        string ff = Flächenschwerpunkt(Breite, Höhe);
 
-                    //Berechnung des Flächenträgheitsmomentes IXX
-                    string gg = FlächenträgheitsmomentIXXRHK(Breite, Höhe, BreiteInnen, HöheInnen);
+                        //Berechnung des Flächenträgheitsmomentes IXX
+                        string gg = FlächenträgheitsmomentIXXRHK(Breite, Höhe, BreiteInnen, HöheInnen);
 
-                    //Berechnung des Flächenträgheitsmomentes IYY
-                    string hh = FlächentregheitsmomentIYYRHK(Breite, Höhe, BreiteInnen, HöheInnen);
+                        //Berechnung des Flächenträgheitsmomentes IYY
+                        string hh = FlächentregheitsmomentIYYRHK(Breite, Höhe, BreiteInnen, HöheInnen);
 
-                    //Ausgabe 
-                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
-                    Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
-                    Console.WriteLine("Breite Innen = " + BreiteInnen + "mm");
-                    Console.WriteLine("Höhe Innen = " + HöheInnen + "mm");
-                    Console.WriteLine("");
-                    Console.WriteLine("Flächeninhalt = " + Convert.ToString(cc) + "mm^2"); // Ausgabe Flächeninhalt 
-                    Console.WriteLine(ff); // Ausgabe Flächenschwerpunkt 
-                    Console.WriteLine(gg); // Ausgabe IXX
-                    Console.WriteLine(hh); // Ausgabe IYY 
-                    Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
+                        //Ausgabe 
+                        Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                        Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
+                        Console.WriteLine("Breite Innen = " + BreiteInnen + "mm");
+                        Console.WriteLine("Höhe Innen = " + HöheInnen + "mm");
+                        Console.WriteLine("");
+                        Console.WriteLine("Flächeninhalt = " + Convert.ToString(cc) + "mm^2"); // Ausgabe Flächeninhalt 
+                        Console.WriteLine(ff); // Ausgabe Flächenschwerpunkt 
+                        Console.WriteLine(gg); // Ausgabe IXX
+                        Console.WriteLine(hh); // Ausgabe IYY 
+                        Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
+                    }
+
+                   
 
                     Console.ReadKey();
 
@@ -160,25 +173,30 @@ namespace Allgemeine_Profilberechnungen
                     Innendurchmesser = Convert.ToDouble(Console.ReadLine());
                     Console.Clear();
 
-                    Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
-                    Console.WriteLine("Innendurchmesser" + Convert.ToDouble(Innendurchmesser) + "mm");
-                    Console.Clear();
+                    if ( Innendurchmesser> Außendurchmesser)
+                    {
+                        Console.WriteLine("Error: Außendurchmessser muss kleiner Innendurchmesser ");
+                    }
+                    else
+                    {
+                        //Berrechnung Flächeninhalt
+                        string cc = FlächenberechnungKHP(Außendurchmesser, Innendurchmesser);
+                        //Berechnung Flächenschwerpunkt
+                        string fs = FlächenschwerpunktKHP(Außendurchmesser);
+                        //Berechnung Flächenträgheitsmoment IXX, IYY
+                        string ftm = FlächenträgheitsmomenteKHP(Außendurchmesser, Innendurchmesser);
 
-                    //Berrechnung Flächeninhalt
-                    double cc = FlächenberechnungKHP(Außendurchmesser, Innendurchmesser);
-                    //Berechnung Flächenschwerpunkt
-                    string fs = FlächenschwerpunktKHP(Außendurchmesser);
-                    //Berechnung Flächenträgheitsmoment IXX, IYY
-                    string ftm = FlächenträgheitsmomenteKHP(Außendurchmesser, Innendurchmesser);
+                        //Ausgabe
+                        Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
+                        Console.WriteLine("Innendurchmesser" + Convert.ToDouble(Innendurchmesser) + "mm");
+                        Console.WriteLine("");
+                        Console.WriteLine(cc);//Ausgabe A
+                        Console.WriteLine(fs);//Ausgabe FSP
+                        Console.WriteLine(ftm);//Ausgabe FTM
+                        Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
+                    }
 
-                    //Ausgabe
-                    Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
-                    Console.WriteLine("Innendurchmesser" + Convert.ToDouble(Innendurchmesser) + "mm");
-                    Console.WriteLine("");
-                    Console.WriteLine(cc);//Ausgabe A
-                    Console.WriteLine(fs);//Ausgabe FSP
-                    Console.WriteLine(ftm);//Ausgabe FTM
-
+                    
                     Console.ReadKey();
                 }
                 #endregion Kreisprofileingabe 
@@ -300,12 +318,18 @@ namespace Allgemeine_Profilberechnungen
         }
         #endregion Kreis
         #region Kreishohlprofil
-        static double FlächenberechnungKHP(double Außendurchmesser, double Innendurchmesser)
+        static string FlächenberechnungKHP(double Außendurchmesser, double Innendurchmesser)
         {
             double xylokal;
             xylokal = (Math.PI / 4) * (Außendurchmesser * Außendurchmesser - Innendurchmesser * Innendurchmesser);
+           
+            string aalokal;
 
-            return xylokal;
+            aalokal = String.Format("Flächeninhalt = {0:00.000}", xylokal) + "mm^2";
+
+
+            return aalokal;
+           
         }
         
 
