@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 
 namespace Allgemeine_Profilberechnungen
@@ -11,7 +12,7 @@ namespace Allgemeine_Profilberechnungen
     {
         static public void Main(string[] args)
         {
-            int wiederholung;
+            MessageBoxResult wiederholung;
             do
             {
                 Console.WriteLine("Welches Profil möchten Sie berechnen ?");
@@ -186,14 +187,12 @@ namespace Allgemeine_Profilberechnungen
                     Console.WriteLine("Fehler, Auswahl nicht eindeutig");
                     Console.ReadKey();
                 }
+                         
+                wiederholung = MessageBox.Show("Weitere Berechnung? ", "Wichtige Frage",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
                 Console.Clear();
-                Console.WriteLine("Möchten sie erneut berechenen?");
-                Console.WriteLine("1 = Ja");
-                Console.WriteLine("2 = Nein");
-                wiederholung = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
-            } while (wiederholung == 1);
-
+            } while (wiederholung == MessageBoxResult.Yes);
         }
         #region Rechteckprofil
         static double Flächenberechnung(double Breite, double Höhe)
