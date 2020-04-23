@@ -29,7 +29,8 @@ namespace Allgemeine_Profilberechnungen
                 #region Rechteckeingabe 
                 if (Auswahl == 1)
                 {
-                    double Breite, Höhe;
+                    #region Eingabge 
+                    double Breite, Höhe, Länge, Material;
                     Console.WriteLine("Geben Sie die Breite des Rechteckes in mm an");
                     Breite = Convert.ToDouble(Console.ReadLine());
                     Console.Clear();
@@ -39,27 +40,54 @@ namespace Allgemeine_Profilberechnungen
                     Höhe = Convert.ToDouble(Console.ReadLine());
                     Console.Clear();
 
+                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                    Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
+                    Console.WriteLine("Geben Sie die Länge des Profils in mm an ");
+                    Länge = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+
+                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                    Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
+                    Console.WriteLine("Länge  = " + Convert.ToString(Länge) + "mm");
+                    Console.WriteLine("");
+                    Console.WriteLine("Aus welchem Material ist das Profil? ");
+                    Console.WriteLine("1 = Stahl ");
+                    Console.WriteLine("2 = Aluminium ");
+                    Material = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+
+                    #endregion Eingabe 
+
                     //Berechnung des Flächeninhaltes 
-                    double cc = Flächenberechnung(Breite, Höhe);
+                    double Flächeninhalt  = Flächenberechnung(Breite, Höhe);
 
                     //Berechnung des Flächenschwerpunktes
-                    string ff = Flächenschwerpunkt(Breite, Höhe);
+                    string Flächenschwerp = Flächenschwerpunkt(Breite, Höhe);
 
                     //Berechnung des Flächenträgheitsmomentes IXX
-                    string gg = FlächenträgheitsmomentIXX(Breite, Höhe);
+                    string IXX = FlächenträgheitsmomentIXX(Breite, Höhe);
 
                     //Berechnung des Flächenträgheitsmomentes IYY
-                    string hh = FlächentregheitsmomentIYY(Breite, Höhe);
+                    string IYY = FlächentregheitsmomentIYY(Breite, Höhe);
+
+                    //Berechnung des Volumens:
+                    double volumen = Volumenberechnung(Flächeninhalt, Länge);
+
+                    //Berechnung Material 
+                    double Masse = Materialauswahl(Material, volumen); 
+                                       
 
                     //Ausgabe 
                     Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
                     Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
                     Console.WriteLine("");
-                    Console.WriteLine("Flächeninhalt = " + Convert.ToString(cc) + "mm^2"); // Ausgabe Flächeninhalt 
-                    Console.WriteLine(ff); // Ausgabe Flächenschwerpunkt 
-                    Console.WriteLine(gg); // Ausgabe IXX
-                    Console.WriteLine(hh); // Ausgabe IYY 
+                    Console.WriteLine("Flächeninhalt des Querschnittes = " + Convert.ToString(Flächeninhalt) + "mm^2"); // Ausgabe Flächeninhalt 
+                    Console.WriteLine(Flächenschwerp); // Ausgabe Flächenschwerpunkt 
+                    Console.WriteLine(IXX); // Ausgabe IXX
+                    Console.WriteLine(IYY); // Ausgabe IYY 
                     Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
+                    Console.WriteLine("Volumen = " + volumen + "mm^3");
+                    Console.WriteLine("Masse : " + Masse +" Gramm");
 
                     Console.ReadKey();
 
@@ -90,12 +118,12 @@ namespace Allgemeine_Profilberechnungen
                     Console.WriteLine("Breite Innen = " + BreiteInnen + "mm");
                     Console.WriteLine("Geben Sie die InnenHöhe des Rechteckes in mm an ");
                     HöheInnen = Convert.ToDouble(Console.ReadLine());
-                    
+
                     Console.Clear();
-                   
+
                     // Schleife zur Überprüfung auf Glaubwürdigkeit 
-                   
-                    if (BreiteInnen > Breite && HöheInnen > Höhe )
+
+                    if (BreiteInnen > Breite && HöheInnen > Höhe)
                     {
                         Console.WriteLine("Error: Außenabmessungen müssen größer als die Innenabmessungen sein");
                     }
@@ -127,7 +155,7 @@ namespace Allgemeine_Profilberechnungen
                         Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
                     }
 
-                   
+
 
                     Console.ReadKey();
 
@@ -173,7 +201,7 @@ namespace Allgemeine_Profilberechnungen
                     Innendurchmesser = Convert.ToDouble(Console.ReadLine());
                     Console.Clear();
 
-                    if ( Innendurchmesser> Außendurchmesser)
+                    if (Innendurchmesser > Außendurchmesser)
                     {
                         Console.WriteLine("Error: Außendurchmessser muss kleiner Innendurchmesser ");
                     }
@@ -196,7 +224,7 @@ namespace Allgemeine_Profilberechnungen
                         Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
                     }
 
-                    
+
                     Console.ReadKey();
                 }
                 #endregion Kreisprofileingabe 
@@ -205,13 +233,34 @@ namespace Allgemeine_Profilberechnungen
                     Console.WriteLine("Fehler, Auswahl nicht eindeutig");
                     Console.ReadKey();
                 }
-                         
+
                 wiederholung = MessageBox.Show("Weitere Berechnung? ", "Wichtige Frage",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
                 Console.Clear();
             } while (wiederholung == MessageBoxResult.Yes);
         }
+        static double Materialauswahl(double Material,double Volumen )
+        {
+            double Dichte = 0;
+           if (Material==1)//Stahl 
+            {
+                Dichte =7.85;
+            }
+           else if (Material ==2)//Aluminium 
+            {
+                Dichte = 2.7;
+            }
+           else
+            {
+                Console.WriteLine("Eingabe nicht korrekt");
+            }
+
+            Dichte = (Dichte * Volumen)/1000;
+
+            return Dichte; 
+        }
+
         #region Rechteckprofil
         static double Flächenberechnung(double Breite, double Höhe)
         {
@@ -224,14 +273,10 @@ namespace Allgemeine_Profilberechnungen
         static string Flächenschwerpunkt(double Breite, double Höhe)
         {
             double dd, ee;
-
             dd = Breite / 2;
             ee = Höhe / 2;
-
             string ff;
-
             ff = "Schwerpunktkoordinaten (x:" + Convert.ToString(dd) + " y:" + Convert.ToString(ee) + ")";
-
             return ff;
         }
 
@@ -239,10 +284,8 @@ namespace Allgemeine_Profilberechnungen
         {
             double ix;
             ix = (Breite * Math.Pow(Höhe, 3)) / 12;
-
             string fflk;
             fflk = String.Format("Flächenträgheitsmoment IXX = {0:00.000}", ix) + "mm^4";
-
             return fflk;
         }
 
@@ -250,13 +293,19 @@ namespace Allgemeine_Profilberechnungen
         {
             double iy;
             iy = (Math.Pow(Breite, 3) * Höhe) / 12;
-
-            string fflk;
-
-            fflk = String.Format("Flächenträgheitsmoment IYY = {0:00.000}", iy) + "mm^4";
-
+            string fflk = String.Format("Flächenträgheitsmoment IYY = {0:00.000}", iy) + "mm^4";
             return fflk;
         }
+
+         static double Volumenberechnung(double cc, double Länge)
+        {
+            double volumen_lk;
+            volumen_lk = cc * Länge;
+            return volumen_lk;
+ 
+        }
+        
+
         #endregion Rechteckprofil
         #region Rechteckhohlprofil
         static double FlächenberechnungRHK(double Breite, double Höhe, double BreiteInnen, double HöheInnen)
