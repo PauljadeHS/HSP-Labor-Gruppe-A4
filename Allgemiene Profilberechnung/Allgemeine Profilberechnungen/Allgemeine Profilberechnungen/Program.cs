@@ -189,7 +189,7 @@ namespace Allgemeine_Profilberechnungen
                 #region Kreihohlprofileingabe 
                 else if (Auswahl == 4)
                 {
-                    double Außendurchmesser, Innendurchmesser;
+                    double Außendurchmesser, Innendurchmesser, Laenge, Material;
                     //Eingabe Außendurchmesser
                     Console.WriteLine("Geben Sie den Außendurchmesser in mm ein");
                     Außendurchmesser = Convert.ToDouble(Console.ReadLine());
@@ -201,27 +201,57 @@ namespace Allgemeine_Profilberechnungen
                     Innendurchmesser = Convert.ToDouble(Console.ReadLine());
                     Console.Clear();
 
+                    
+                    //Abfrage Länge des Profils
+                    Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
+                    Console.WriteLine("Innendurchmesser" + Convert.ToDouble(Innendurchmesser) + "mm");
+                    Console.WriteLine("Geben Sie die Länge des Profils in mm ein");
+                    Laenge = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+
+                    //Abfrage Material
+                    Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
+                    Console.WriteLine("Innendurchmesser" + Convert.ToDouble(Innendurchmesser) + "mm");
+                    Console.WriteLine("Laenge des Profils " + Convert.ToDouble(Laenge) + " mm ");
+                    Console.WriteLine("");
+                    Console.WriteLine("Aus welchem Material ist das Profil ?");
+                    Console.WriteLine(" 1 = Stahl");
+                    Console.WriteLine(" 2 = Aluminium");
+                    Material = Convert.ToDouble(Console.ReadKey());
+                    Console.Clear();
+
+
                     if (Innendurchmesser > Außendurchmesser)
                     {
                         Console.WriteLine("Error: Außendurchmessser muss kleiner Innendurchmesser ");
                     }
                     else
                     {
+                        
+
+
                         //Berrechnung Flächeninhalt
-                        string cc = FlächenberechnungKHP(Außendurchmesser, Innendurchmesser);
+                        double cc = FlächenberechnungKHP(Außendurchmesser, Innendurchmesser);
                         //Berechnung Flächenschwerpunkt
                         string fs = FlächenschwerpunktKHP(Außendurchmesser);
                         //Berechnung Flächenträgheitsmoment IXX, IYY
                         string ftm = FlächenträgheitsmomenteKHP(Außendurchmesser, Innendurchmesser);
+                        //Berrechnung Volumen
+                        double vlm = VolumenberrechnungKHP(cc, Laenge);
+                        //Berrechnung Material / Masse
+                        double Masse = MasseberrechnungKHP(vlm, Material);
 
                         //Ausgabe
-                        Console.WriteLine("Außendurchmesser" + Convert.ToDouble(Außendurchmesser) + "mm");
-                        Console.WriteLine("Innendurchmesser" + Convert.ToDouble(Innendurchmesser) + "mm");
+                        Console.WriteLine("Außendurchmesser " + Convert.ToDouble(Außendurchmesser) + " mm ");
+                        Console.WriteLine("Innendurchmesser " + Convert.ToDouble(Innendurchmesser) + " mm ");
+                        Console.WriteLine("Laenge des Profils " + Convert.ToDouble(Laenge) + " mm ");
                         Console.WriteLine("");
-                        Console.WriteLine(cc);//Ausgabe A
-                        Console.WriteLine(fs);//Ausgabe FSP
+                        Console.WriteLine("Flächeninhalt "+ Convert.ToString(cc) +"mm^2");//Ausgabe  A
+                        Console.WriteLine(fs);//Ausgabe  FSP
                         Console.WriteLine(ftm);//Ausgabe FTM
                         Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
+                        Console.WriteLine("Volumen: "+ vlm +" mm^3");//Ausgabe V
+                        Console.WriteLine("Masse: " + Masse + " Gramm ");//Ausgabe Masse
                     }
 
 
@@ -366,18 +396,16 @@ namespace Allgemeine_Profilberechnungen
             return fflk;
         }
         #endregion Kreis
+
         #region Kreishohlprofil
-        static string FlächenberechnungKHP(double Außendurchmesser, double Innendurchmesser)
+        static double FlächenberechnungKHP(double Außendurchmesser, double Innendurchmesser)
         {
             double xylokal;
             xylokal = (Math.PI / 4) * (Außendurchmesser * Außendurchmesser - Innendurchmesser * Innendurchmesser);
-           
-            string aalokal;
 
-            aalokal = String.Format("Flächeninhalt = {0:00.000}", xylokal) + "mm^2";
+            
 
-
-            return aalokal;
+            return xylokal;
            
         }
         
@@ -406,6 +434,36 @@ namespace Allgemeine_Profilberechnungen
             ftm = String.Format("Flächenträgheitsmoment IXX = IYY = {0:00.000}", ib) + "mm^4";
 
             return ftm;
+        }
+
+        static double VolumenberrechnungKHP(double cc, double Laenge)
+        {
+            double volumen_lk;
+
+            volumen_lk = cc * Laenge;
+            return volumen_lk;
+        }
+
+        static double MasseberrechnungKHP(double Material, double vlm)
+        {
+            double Dichte = 0;
+                if(Material == 1)//Stahl
+            {
+                Dichte = 7.85;
+            }
+                else if (Material == 2)//Aluminium
+            {
+                Dichte = 2.7;
+            }
+                else
+            {
+                Console.WriteLine("Eingabe nicht korrekt");
+            }
+
+            double Masse;
+
+            Masse = (Dichte * vlm) / 1000;
+            return Masse;
         }
         #endregion Kreishohlprofil
     }
