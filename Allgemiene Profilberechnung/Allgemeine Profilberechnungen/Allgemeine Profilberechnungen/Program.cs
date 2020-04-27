@@ -10,7 +10,7 @@ namespace Allgemeine_Profilberechnungen
 {
     class Program
     {
-        static public void Main(string[] args)
+        public static void Main(string[] args)
         {
             MessageBoxResult wiederholung;
             do
@@ -29,7 +29,7 @@ namespace Allgemeine_Profilberechnungen
                 #region Rechteckeingabe 
                 if (Auswahl == 1)
                 {
-                    #region Eingabge 
+                    #region Eingabe 
                     double Breite, Höhe, Länge, Material;
                     Console.WriteLine("Geben Sie die Breite des Rechteckes in mm an");
                     Breite = Convert.ToDouble(Console.ReadLine());
@@ -96,7 +96,8 @@ namespace Allgemeine_Profilberechnungen
                 #region Rechteckholprofileingabe 
                 else if (Auswahl == 2)
                 {
-                    double Breite, Höhe, BreiteInnen, HöheInnen;
+                    #region Eingabe
+                    double Breite, Höhe, BreiteInnen, HöheInnen, Länge, Material;
                     Console.WriteLine("Geben Sie die Breite des Rechteckes in mm an");
                     Breite = Convert.ToDouble(Console.ReadLine());
                     Console.Clear();
@@ -119,7 +120,25 @@ namespace Allgemeine_Profilberechnungen
                     Console.WriteLine("Geben Sie die InnenHöhe des Rechteckes in mm an ");
                     HöheInnen = Convert.ToDouble(Console.ReadLine());
 
+                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                    Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
+                    Console.WriteLine("Breite Innen = " + BreiteInnen + "mm");
+                    Console.WriteLine("Höhe Innen = " + HöheInnen + "mm");
+                    Console.WriteLine("Geben Sie die Länge des Profils in mm an ");
+                    Länge = Convert.ToDouble(Console.ReadLine());
                     Console.Clear();
+
+                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                    Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
+                    Console.WriteLine("Länge  = " + Convert.ToString(Länge) + "mm");
+                    Console.WriteLine("");
+                    Console.WriteLine("Aus welchem Material ist das Profil? ");
+                    Console.WriteLine("1 = Stahl ");
+                    Console.WriteLine("2 = Aluminium ");
+                    Material = Convert.ToDouble(Console.ReadLine());
+
+                    Console.Clear();
+                    #endregion Eingabe
 
                     // Schleife zur Überprüfung auf Glaubwürdigkeit 
 
@@ -142,6 +161,12 @@ namespace Allgemeine_Profilberechnungen
                         //Berechnung des Flächenträgheitsmomentes IYY
                         string hh = FlächentregheitsmomentIYYRHK(Breite, Höhe, BreiteInnen, HöheInnen);
 
+                        //Berechnung des Volumens:
+                        double Volumen = VolumenberechnungRHK(cc, Länge);
+
+                        //Berechnung Material
+                        double Masse = Materialauswahl(Material, Volumen);
+
                         //Ausgabe 
                         Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
                         Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
@@ -153,6 +178,8 @@ namespace Allgemeine_Profilberechnungen
                         Console.WriteLine(gg); // Ausgabe IXX
                         Console.WriteLine(hh); // Ausgabe IYY 
                         Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
+                        Console.WriteLine("Volumen = " + Volumen + "mm^3");
+                        Console.WriteLine("Masse : " + Masse + " Gramm");
                     }
 
 
@@ -270,7 +297,8 @@ namespace Allgemeine_Profilberechnungen
                 Console.Clear();
             } while (wiederholung == MessageBoxResult.Yes);
         }
-        static double Materialauswahl(double Material,double Volumen )
+        #region Materialauswahl
+        static double Materialauswahl(double Material, double Volumen)
         {
             double Dichte = 0;
            if (Material==1)//Stahl 
@@ -290,7 +318,7 @@ namespace Allgemeine_Profilberechnungen
 
             return Dichte; 
         }
-
+        #endregion Materialauswahl
         #region Rechteckprofil
         static double Flächenberechnung(double Breite, double Höhe)
         {
@@ -368,6 +396,14 @@ namespace Allgemeine_Profilberechnungen
 
             return fflk;
         }
+        static double VolumenberechnungRHK(double cc, double Länge)
+        {
+            double volumen_lk;
+            volumen_lk = cc * Länge;
+            return volumen_lk;
+
+        }
+
         #endregion Rechteckhohlprofil
         #region Kreis
         static string FlächenberechnungKP(double Radius)
@@ -395,8 +431,7 @@ namespace Allgemeine_Profilberechnungen
 
             return fflk;
         }
-        #endregion Kreis
-
+        #endregion Kreis#
         #region Kreishohlprofil
         static double FlächenberechnungKHP(double Außendurchmesser, double Innendurchmesser)
         {
