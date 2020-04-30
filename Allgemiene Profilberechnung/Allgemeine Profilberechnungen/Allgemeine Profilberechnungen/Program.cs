@@ -157,8 +157,6 @@ namespace Allgemeine_Profilberechnungen
                         Console.WriteLine(gg); // Ausgabe IXX
                         Console.WriteLine(hh); // Ausgabe IYY 
                         Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
-                        Console.WriteLine("Volumen = " + Volumen + "mm^3");
-                        Console.WriteLine("Masse : " + Masse + " Gramm");
                     }
 
 
@@ -355,13 +353,8 @@ namespace Allgemeine_Profilberechnungen
                         Console.WriteLine(gg); // Ausgabe IXX
                         Console.WriteLine(hh); // Ausgabe IYY 
                         Console.WriteLine("Flächentragheitsmoment IXY = 0 mm^4");
-                        Console.WriteLine("Volumen = " + Volumen + "mm^3");
-                        Console.WriteLine("Masse : " + Masse + " Gramm");
                     }
 
-
-
-                    Console.ReadKey();
 
                 }
                 #endregion Doppel-T-Profileingabe
