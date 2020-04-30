@@ -64,7 +64,7 @@ namespace Allgemeine_Profilberechnungen
                 Material = Convert.ToDouble(Console.ReadLine());
                 Console.Clear();
 
-                #region Rechteckeingabe 
+                #region Rechteck 
                 if (Auswahl == 1)
                 {
                     #region Eingabe 
@@ -84,10 +84,10 @@ namespace Allgemeine_Profilberechnungen
                     Flächeninhalt = Flächenberechnung(Breite, Höhe);
 
                     //Berechnung des Flächenschwerpunktes XS
-                    FlächenschwerpunktXS = FlächenschwerpunktXSRP(Breite);
+                    FlächenschwerpunktXS = FlächenschwerpunktRP(Breite);
 
                     //Berechnung des Flächenschwerpunktes YS
-                    FlächenschwerpunktYS = FlächenschwerpunktYSRP(Höhe);
+                    FlächenschwerpunktYS = FlächenschwerpunktRP(Höhe);
 
                     //Berechnung des Flächenträgheitsmomentes IXX
                     IXX = FlächenträgheitsmomentIXX(Breite, Höhe);
@@ -105,8 +105,8 @@ namespace Allgemeine_Profilberechnungen
 
 
                 }
-                #endregion Rechteckeingabe
-                #region Rechteckholprofileingabe 
+                #endregion Rechteck
+                #region Rechteckholprofil
                 else if (Auswahl == 2)
                 {
                     #region Eingabe
@@ -148,10 +148,10 @@ namespace Allgemeine_Profilberechnungen
                         Flächeninhalt = FlächenberechnungRHK(Breite, Höhe, BreiteInnen, HöheInnen);
 
                         //Berechnung des Flächenschwerpunktes XS
-                        FlächenschwerpunktXS = FlächenschwerpunktXSRP(Breite);
+                        FlächenschwerpunktXS = FlächenschwerpunktRP(Breite);
 
                         //Berechnung des Flächenschwerpunktes YS
-                        FlächenschwerpunktYS = FlächenschwerpunktYSRP(Höhe);
+                        FlächenschwerpunktYS = FlächenschwerpunktRP(Höhe);
 
                         //Berechnung des Flächenträgheitsmomentes IXX
                         IXX = FlächenträgheitsmomentIXXRHP(Breite, Höhe, BreiteInnen, HöheInnen);
@@ -168,13 +168,8 @@ namespace Allgemeine_Profilberechnungen
                         Console.WriteLine("Breite Innen = " + BreiteInnen + "mm");
                         Console.WriteLine("Höhe Innen = " + HöheInnen + "mm");
                     }
-
-
-
-                    Console.ReadKey();
-
                 }
-                #endregion Rechteckholprofileingabe 
+                #endregion Rechteckholprofil 
                 #region Kreisprofileingabe 
                 else if (Auswahl == 3)
                 {
@@ -189,9 +184,9 @@ namespace Allgemeine_Profilberechnungen
                     Flächeninhalt = FlächenberechnungKP(Außendurchmesser);
 
                     //Berechnung Flächenschwerpunkt XS
-                    FlächenschwerpunktXS = FlächenschwerpunktXSRP(Außendurchmesser);
+                    FlächenschwerpunktXS = FlächenschwerpunktRP(Außendurchmesser);
                     //Berechnung Flächenschwerpunkt YS
-                    FlächenschwerpunktYS = FlächenschwerpunktXSRP(Außendurchmesser);
+                    FlächenschwerpunktYS = FlächenschwerpunktRP(Außendurchmesser);
                     //Berechnung Flächenträgheitsmoment IXX
                     IXX = FlächenträgheitsmomentKP(Außendurchmesser);
                     //Berechnung Flächenträgheitsmoment IYY
@@ -206,9 +201,10 @@ namespace Allgemeine_Profilberechnungen
 
                 }
                 #endregion Kreisprofileingabe
-                #region Kreihohlprofileingabe 
+                #region Kreihohlprofil
                 else if (Auswahl == 4)
                 {
+                    #region Eingabe
                     //Eingabe Außendurchmesser
                     Console.WriteLine("Geben Sie den Außendurchmesser in mm ein");
                     double Außendurchmesser = Convert.ToDouble(Console.ReadLine());
@@ -219,7 +215,7 @@ namespace Allgemeine_Profilberechnungen
                     Console.WriteLine("Geben sie den Innendurchmesser in mm ein");
                     double Innendurchmesser = Convert.ToDouble(Console.ReadLine());
                     Console.Clear();
-
+                    #endregion Eingabe
                     if (Innendurchmesser > Außendurchmesser)
                     {
                         Console.WriteLine("Error: Außendurchmessser muss kleiner Innendurchmesser ");
@@ -230,9 +226,9 @@ namespace Allgemeine_Profilberechnungen
                         //Berrechnung Flächeninhalt
                         Flächeninhalt = FlächenberechnungKHP(Außendurchmesser, Innendurchmesser);
                         //Berechnung Flächenschwerpunkt XS
-                        FlächenschwerpunktXS = FlächenschwerpunktXSRP(Außendurchmesser);
+                        FlächenschwerpunktXS = FlächenschwerpunktRP(Außendurchmesser);
                         //Berechnung Flächenschwerpunkt YS
-                        FlächenschwerpunktYS = FlächenschwerpunktXSRP(Außendurchmesser);
+                        FlächenschwerpunktYS = FlächenschwerpunktRP(Außendurchmesser);
                         //Berechnung Flächenträgheitsmoment IXX
                         IXX = FlächenträgheitsmomentKHP(Außendurchmesser, Innendurchmesser);
                         //Berechnung Flächenträgheitsmoment IYY
@@ -245,12 +241,63 @@ namespace Allgemeine_Profilberechnungen
                         Console.WriteLine("Innendurchmesser " + Convert.ToDouble(Innendurchmesser) + " mm ");
                         Console.WriteLine("Länge des Profils " + Convert.ToDouble(Länge) + " mm ");
                     }
-
                 }
-
-                #endregion Kreisprofileingabe 
-                #region Doppel-T-Profileingabe
+                #endregion Kreisprofil 
+                #region T-Profi 
                 else if (Auswahl == 5)
+                {
+                    #region Eingabe
+                    double Stegdicke, Flanschdicke;
+                    Console.WriteLine("Geben Sie die Breite des Doppel-T-Profils in mm an");
+                    Breite = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+
+                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                    Console.WriteLine("Geben Sie die Höhe des Doppel-T-Profils in mm an ");
+                    Höhe = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+
+                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                    Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
+                    Console.WriteLine("Geben Sie die Stegdicke des Doppel-T-Profils in mm an ");
+                    Stegdicke = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+
+                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                    Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
+                    Console.WriteLine("Stegdicke = " + Stegdicke + "mm");
+                    Console.WriteLine("Geben Sie die Flanschdicke des Doppel-T-Profils in mm an ");
+                    Flanschdicke = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
+                    #endregion Eingabe
+
+                    //Berechnung des Flächeninhaltes 
+                    Flächeninhalt = FlächenberechnungT(Breite, Höhe, Stegdicke, Flanschdicke);
+
+                    //Berechnung des Flächenschwerpunktes XS
+                    FlächenschwerpunktXS = FlächenschwerpunktRP(Breite);
+
+                    //Berechnung des Flächenschwerpunktes YS
+                    FlächenschwerpunktYS = FlächenschwerpunktRP(Höhe);
+
+                    //Berechnung des Flächenträgheitsmomentes IXX
+                    IXX = FlächenträgheitsmomentIXXDoppelT(Breite, Höhe, Stegdicke, Flanschdicke);
+
+                    //Berechnung des Flächenträgheitsmomentes IYY
+                    IYY = FlächentregheitsmomentIYYDoppelT(Breite, Höhe, Stegdicke, Flanschdicke);
+
+                    //Berechnung des Flächenträgheitsmomentes IYY
+                    IXY = 0;
+
+                    //Ausgabe 
+                    Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
+                    Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
+                    Console.WriteLine("Stegdicke = " + Stegdicke + "mm");
+                    Console.WriteLine("Flanschdicke = " + Flanschdicke + "mm");
+                }
+                #endregion T-Profil 
+                #region Doppel-T-Profil
+                else if (Auswahl == 6)
                 {
                     #region Eingabe
                     double Stegdicke, Flanschdicke;
@@ -280,8 +327,7 @@ namespace Allgemeine_Profilberechnungen
 
                     #endregion Eingabe
 
-                    // Schleife zur Überprüfung auf Glaubwürdigkeit 
-
+                    // Schleife zur Überprüfung auf Glaubwürdigkeit
                     if (Stegdicke > Breite && Flanschdicke * 2 > Höhe)
                     {
                         Console.WriteLine("Error: Außenabmessungen müssen größer als die Innenabmessungen sein");
@@ -293,10 +339,10 @@ namespace Allgemeine_Profilberechnungen
                         Flächeninhalt = FlächenberechnungDoppelT(Breite, Höhe, Stegdicke, Flanschdicke);
 
                         //Berechnung des Flächenschwerpunktes XS
-                        FlächenschwerpunktXS = FlächenschwerpunktXSRP(Breite);
+                        FlächenschwerpunktXS = FlächenschwerpunktRP(Breite);
 
                         //Berechnung des Flächenschwerpunktes YS
-                        FlächenschwerpunktYS = FlächenschwerpunktYSRP(Höhe);
+                        FlächenschwerpunktYS = FlächenschwerpunktRP(Höhe);
 
                         //Berechnung des Flächenträgheitsmomentes IXX
                         IXX = FlächenträgheitsmomentIXXDoppelT(Breite, Höhe, Stegdicke, Flanschdicke);
@@ -316,7 +362,7 @@ namespace Allgemeine_Profilberechnungen
 
 
                 }
-                #endregion Doppel-T-Profileingabe
+                #endregion Doppel-T-Profil
                 #region U-Profil
                 else if (Auswahl == 7)
                 {
@@ -346,7 +392,7 @@ namespace Allgemeine_Profilberechnungen
                     FlächenschwerpunktXS = FlächenschwerpunktXSUP(Breite, Höhe, Profildicke);
 
                     //Berechnung des Flächenschwerpunktes YS
-                    FlächenschwerpunktYS = FlächenschwerpunktYSUP(Höhe);
+                    FlächenschwerpunktYS = FlächenschwerpunktRP(Höhe);
 
                     //Berechnung des Flächenträgheitsmomentes IXX
                     IXX = FlächenträgheitsmomentIXXUP(Breite, Höhe, Profildicke);
@@ -364,16 +410,15 @@ namespace Allgemeine_Profilberechnungen
                    
                 }
                 #endregion U-Profil
-
-                #region Volumen/Masse
+                #region Berechnung_Volumen/Masse
 
                 //Berechnung des Volumens:
                 Volumen = Volumenberechnung(Flächeninhalt, Länge);
 
                 //Berechnung Material 
                 Masse = Massenberechnung(Material, Volumen);
-                #endregion Volumen/Masse
-                #region Ausgabe
+                #endregion Berechnung_Volumen/Masse
+                #region Allgemeine_Ausgabe
 
                 Console.WriteLine("");
                 Console.WriteLine("Flächeninhalt des Querschnittes = " + Convert.ToString(Flächeninhalt) + "mm^2"); // Ausgabe Flächeninhalt 
@@ -391,11 +436,12 @@ namespace Allgemeine_Profilberechnungen
                 MessageBoxImage.Question);
                 Console.Clear();
 
-                #endregion Ausgabe 
+                #endregion Allgemeine_Ausgabe 
 
             } while (wiederholung == MessageBoxResult.Yes);
         }
-        #region Volumen/Materialauswahl
+        #region Unterprogramme 
+        #region UP_Allgemein
         static double Volumenberechnung(double lkFläche, double lkLänge)
         {
             double lkVolumen;
@@ -424,8 +470,8 @@ namespace Allgemeine_Profilberechnungen
 
             return lkMasse;//Gramm  
         }
-        #endregion Volumen/Materialauswahl
-        #region Rechteckprofil
+        #endregion UP_Allgemein 
+        #region UP_Rechteckprofil
         static double Flächenberechnung(double lkBreite, double lkHöhe)
         {
             double lkFlächeninhalt;
@@ -434,22 +480,16 @@ namespace Allgemeine_Profilberechnungen
             return lkFlächeninhalt;
         }
 
-        static double FlächenschwerpunktXSRP(double lkBreite)
+        static double FlächenschwerpunktRP(double lkBreite)
         {
             
             double lkhalbeBreite = lkBreite / 2;
                        
             return lkhalbeBreite;
         }
-        static double FlächenschwerpunktYSRP(double lkHöhe)
-        {
+        
 
-            double lkhalbeHöhe = lkHöhe / 2;
-
-            return lkhalbeHöhe;
-        }
-
-            static double FlächenträgheitsmomentIXX(double lkBreite, double lkHöhe)
+        static double FlächenträgheitsmomentIXX(double lkBreite, double lkHöhe)
         {
             double lkIXX;
             lkIXX = (lkBreite * Math.Pow(lkHöhe, 3)) / 12;
@@ -465,8 +505,8 @@ namespace Allgemeine_Profilberechnungen
             return lkIYY;
         }
 
-        #endregion Rechteckprofil
-        #region Rechteckhohlprofil
+        #endregion UP_Rechteckprofil
+        #region UP_Rechteckhohlprofil
         static double FlächenberechnungRHK(double lkBreite, double lkHöhe, double lkBreiteInnen, double lkHöheInnen)
         {
             double lkFlächeninhalt;
@@ -492,8 +532,8 @@ namespace Allgemeine_Profilberechnungen
             return lkIYY;
         }
 
-        #endregion Rechteckhohlprofil
-        #region Kreisprofil
+        #endregion UP_Rechteckhohlprofil
+        #region UP_Kreisprofil
         static double FlächenberechnungKP(double lkAußendurchmesser)
         {
             double lkFlächeninhalt= Math.Pow((lkAußendurchmesser/2), 2) * Math.PI;
@@ -509,8 +549,8 @@ namespace Allgemeine_Profilberechnungen
 
             return kIXXIYY;
         }
-        #endregion Kreis#
-        #region Kreishohlprofil
+        #endregion UP_Kreisprofil
+        #region UP_Kreishohlprofil
         static double FlächenberechnungKHP(double lkAußendurchmesser, double lkInnendurchmesser)
         {
             double lkFlächeninhalt ;
@@ -525,9 +565,25 @@ namespace Allgemeine_Profilberechnungen
             return lkIXXIYY;
         }
 
-        #endregion Kreishohlprofil
-        #region Doppel-T-Profil
-        static double FlächenberechnungDoppelT(double lkBreite, double lkHöhe, double lkStegdicke, double lkFlanschdicke)
+        #endregion UP_Kreishohlprofil
+        #region UP_T-Profil
+        static double FlächenberechnungT(double lkBreite, double lkHöhe, double lkStegdicke, double lkFlanschdicke)
+        {
+            double lkFlächeninhalt;
+            lkFlächeninhalt = lkBreite * lkFlanschdicke + (lkHöhe - lkFlanschdicke) * lkStegdicke;
+
+            return lkFlächeninhalt;
+        }
+        static double FlächenschwerpunktYST(double lkBreite, double lkHöhe, double lkStegdicke, double lkFlanschdickee)
+        {
+            double lkys;
+            lkys = (lkHöhe * lkBreite * lkBreite / 2 - (lkHöhe -  lkStegdicke) * (lkBreite - lkFlanschdickee) * (lkBreite - lkProfildicke) / 2) / (lkHöhe * lkBreite - (lkHöhe - 2 * lkProfildicke) * (lkBreite - lkProfildicke));
+
+            return lkys;
+        }
+            #endregion UP_T-Profil
+            #region UP_Doppel-T-Profil
+            static double FlächenberechnungDoppelT(double lkBreite, double lkHöhe, double lkStegdicke, double lkFlanschdicke)
         {
             double lkFlächeninhalt;
             lkFlächeninhalt = lkBreite * lkHöhe - (lkBreite - lkStegdicke) * (lkHöhe - 2 * lkFlanschdicke);
@@ -549,8 +605,8 @@ namespace Allgemeine_Profilberechnungen
              return lkIYY;
         }
 
-        #endregion Doppel-T-Profil
-        #region U-Profil
+        #endregion UP_Doppel-T-Profil
+            #region UP_U-Profil
         static double FlächenberechnungUP(double lkBreite, double lkHöhe, double lkProfildicke)
         {
             double lkFlächeninhalt;
@@ -565,15 +621,7 @@ namespace Allgemeine_Profilberechnungen
 
             return lkxs;
         }
-        static double FlächenschwerpunktYSUP(double lkHöhe)
-        {
-            double lkys;
-            lkys = lkHöhe / 2;
-
-            return lkys;
-        }
-
-        static double FlächenträgheitsmomentIXXUP(double lkBreite, double lkHöhe, double lkProfildicke)
+       static double FlächenträgheitsmomentIXXUP(double lkBreite, double lkHöhe, double lkProfildicke)
         {
             double lkIXX;
             lkIXX = (lkBreite * Math.Pow(lkHöhe, 3) / 12) - ((lkBreite - lkProfildicke) * Math.Pow((lkHöhe - 2 * lkProfildicke), 3) / 12);
@@ -587,7 +635,8 @@ namespace Allgemeine_Profilberechnungen
 
             return lkIYY;
         }
-        #endregion U-Profil
+        #endregion UP_U-Profil
     }
+    #endregion Unterprogramme 
 
 }
