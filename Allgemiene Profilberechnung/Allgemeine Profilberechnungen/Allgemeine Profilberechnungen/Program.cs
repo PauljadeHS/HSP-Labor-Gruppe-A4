@@ -278,13 +278,13 @@ namespace Allgemeine_Profilberechnungen
                     FlächenschwerpunktXS = FlächenschwerpunktRP(Breite);
 
                     //Berechnung des Flächenschwerpunktes YS
-                    FlächenschwerpunktYS = FlächenschwerpunktRP(Höhe);
+                    FlächenschwerpunktYS = FlächenschwerpunktYST(Höhe,Flanschdicke,Breite,Stegdicke);
 
                     //Berechnung des Flächenträgheitsmomentes IXX
-                    IXX = FlächenträgheitsmomentIXXDoppelT(Breite, Höhe, Stegdicke, Flanschdicke);
+                    IXX = FlächenträgheitsmomentIXXT(Höhe,Flanschdicke,Breite,Stegdicke);
 
                     //Berechnung des Flächenträgheitsmomentes IYY
-                    IYY = FlächentregheitsmomentIYYDoppelT(Breite, Höhe, Stegdicke, Flanschdicke);
+                    IYY = FlächentregheitsmomentIYYT(Höhe, Flanschdicke, Breite, Stegdicke);
 
                     //Berechnung des Flächenträgheitsmomentes IYY
                     IXY = 0;
@@ -574,12 +574,26 @@ namespace Allgemeine_Profilberechnungen
 
             return lkFlächeninhalt;
         }
-        static double FlächenschwerpunktYST(double lkBreite, double lkHöhe, double lkStegdicke, double lkFlanschdickee)
+        static double FlächenschwerpunktYST(double lkHöhe, double lkFlanschdicke, double lkBreite, double lkStegdicke)
         {
-            double lkys;
-            lkys = (lkHöhe * lkBreite * lkBreite / 2 - (lkHöhe -  lkStegdicke) * (lkBreite - lkFlanschdickee) * (lkBreite - lkProfildicke) / 2) / (lkHöhe * lkBreite - (lkHöhe - 2 * lkProfildicke) * (lkBreite - lkProfildicke));
+            double lkYS;
+            lkYS = ((lkHöhe * lkBreite * lkBreite / 2) + (lkHöhe - lkFlanschdicke) * (lkBreite - lkStegdicke) * ((lkBreite - lkStegdicke) / 2)) / (lkBreite * lkHöhe - (lkBreite - lkStegdicke) * (lkHöhe - lkFlanschdicke));
 
-            return lkys;
+            return lkYS;
+        }
+        static double FlächenträgheitsmomentIXXT(double lkHöhe, double lkFlanschdicke, double lkBreite, double lkStegdicke)
+        {
+            double lkIXX = ((lkBreite * Math.Pow(lkFlanschdicke, 3)/12)+ (lkStegdicke* Math.Pow((lkHöhe - lkFlanschdicke), 3)) / 12);
+
+            return lkIXX;
+        }
+
+        static double FlächentregheitsmomentIYYT(double lkHöhe, double lkFlanschdicke, double lkBreite, double lkStegdicke)
+        {
+            double lkIYY = ((lkFlanschdicke* Math.Pow(lkBreite, 3))/12 + ((lkHöhe-lkFlanschdicke) * Math.Pow(lkStegdicke,3))/ 12);
+
+            return lkIYY;
+
         }
             #endregion UP_T-Profil
             #region UP_Doppel-T-Profil
