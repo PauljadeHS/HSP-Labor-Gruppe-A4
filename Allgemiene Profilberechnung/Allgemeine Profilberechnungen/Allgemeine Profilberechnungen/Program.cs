@@ -15,8 +15,8 @@ namespace Allgemeine_Profilberechnungen
         {
             //Variablen 
             int Auswahl;
+            int Material;
 
-            double Material;
             double Breite;
             double Höhe;
             double Länge;
@@ -28,7 +28,8 @@ namespace Allgemeine_Profilberechnungen
             double IXX=0;
             double IYY=0;
             double IXY=0;
-                
+            string Materialnahme; 
+              
 
             MessageBoxResult wiederholung;
             do
@@ -62,7 +63,7 @@ namespace Allgemeine_Profilberechnungen
                 Console.WriteLine("Aus welchem Material ist das Profil? ");
                 Console.WriteLine("1 = Stahl ");
                 Console.WriteLine("2 = Aluminium ");
-                Material = Convert.ToDouble(Console.ReadLine());
+                Material = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
 
                 #region Rechteck 
@@ -100,6 +101,7 @@ namespace Allgemeine_Profilberechnungen
                     IXY = 0;
 
                     //Ausgabe 
+                    Console.WriteLine("Rechteckprofil : ");
                     Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
                     Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
                     Console.WriteLine("Länge  = " + Convert.ToString(Länge) + "mm");
@@ -164,6 +166,7 @@ namespace Allgemeine_Profilberechnungen
                         IXY = 0;
 
                         //Ausgabe 
+                        Console.WriteLine("Rechteckholprofil : ");
                         Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
                         Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
                         Console.WriteLine("Breite Innen = " + BreiteInnen + "mm");
@@ -171,7 +174,7 @@ namespace Allgemeine_Profilberechnungen
                     }
                 }
                 #endregion Rechteckholprofil 
-                #region Kreisprofileingabe 
+                #region Kreisprofil
                 else if (Auswahl == 3)
                 {
                     #region Eingabe Kreisprofil
@@ -196,12 +199,13 @@ namespace Allgemeine_Profilberechnungen
                     IXY = 0;
 
                     //Ausgabe 
+                    Console.WriteLine("Kreiprofil : ");
                     Console.WriteLine("Außendurchmesser = " + Convert.ToString(Außendurchmesser) + "mm");
                     Console.WriteLine("Länge = " + Convert.ToString(Länge) + "mm^2");
 
 
                 }
-                #endregion Kreisprofileingabe
+                #endregion Kreisprofil
                 #region Kreihohlprofil
                 else if (Auswahl == 4)
                 {
@@ -238,6 +242,7 @@ namespace Allgemeine_Profilberechnungen
                         IXY = 0;
 
                         //Ausgabe
+                        Console.WriteLine("Kreihohlprofil : ");
                         Console.WriteLine("Außendurchmesser " + Convert.ToDouble(Außendurchmesser) + " mm ");
                         Console.WriteLine("Innendurchmesser " + Convert.ToDouble(Innendurchmesser) + " mm ");
                         Console.WriteLine("Länge des Profils " + Convert.ToDouble(Länge) + " mm ");
@@ -279,10 +284,10 @@ namespace Allgemeine_Profilberechnungen
                     FlächenschwerpunktXS = FlächenschwerpunktRP(Breite);
 
                     //Berechnung des Flächenschwerpunktes YS
-                    FlächenschwerpunktYS = FlächenschwerpunktYST(Höhe,Flanschdicke,Breite,Stegdicke);
+                    FlächenschwerpunktYS = FlächenschwerpunktYST(Höhe, Flanschdicke, Breite, Stegdicke);
 
                     //Berechnung des Flächenträgheitsmomentes IXX
-                    IXX = FlächenträgheitsmomentIXXT(Höhe,Flanschdicke,Breite,Stegdicke);
+                    IXX = FlächenträgheitsmomentIXXT(Höhe, Flanschdicke, Breite, Stegdicke);
 
                     //Berechnung des Flächenträgheitsmomentes IYY
                     IYY = FlächentregheitsmomentIYYT(Höhe, Flanschdicke, Breite, Stegdicke);
@@ -291,6 +296,7 @@ namespace Allgemeine_Profilberechnungen
                     IXY = 0;
 
                     //Ausgabe 
+                    Console.WriteLine("T-Profil : ");
                     Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
                     Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
                     Console.WriteLine("Stegdicke = " + Stegdicke + "mm");
@@ -355,6 +361,7 @@ namespace Allgemeine_Profilberechnungen
                         IXY = 0;
 
                         //Ausgabe 
+                        Console.WriteLine("Doppel T-Profil : ");
                         Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
                         Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
                         Console.WriteLine("Stegdicke = " + Stegdicke + "mm");
@@ -405,15 +412,17 @@ namespace Allgemeine_Profilberechnungen
                     IXY = 0;
 
                     //Ausgabe 
+                    Console.WriteLine("U-Profil : ");
                     Console.WriteLine("Breite = " + Convert.ToString(Breite) + "mm");
                     Console.WriteLine("Höhe = " + Convert.ToString(Höhe) + "mm");
                     Console.WriteLine("Profildicke = " + Profildicke + "mm");
-                   
+
                 }
                 #endregion U-Profil
                 #region L-Profil
                 else if (Auswahl == 8)
                 {
+                    #region Eingabe
                     double Profildicke;
                     Console.WriteLine("Geben Sie die Breite ihres L-Profils in mm an");
                     Breite = Convert.ToDouble(Console.ReadLine());
@@ -450,30 +459,34 @@ namespace Allgemeine_Profilberechnungen
                     IXY = 0;
 
                     //Ausgabe
+                    Console.WriteLine("L-Profil : ");
                     Console.WriteLine("Breite =" + Convert.ToString(Breite) + "mm");
                     Console.WriteLine("Höhe =" + Convert.ToString(Höhe) + "mm");
                     Console.WriteLine("Profildicke = " + Profildicke + "mm");
-
                 }
-
+                    #endregion L-Profil
+                
                 #region Berechnung_Volumen/Masse
 
                 //Berechnung des Volumens:
                 Volumen = Volumenberechnung(Flächeninhalt, Länge);
 
+                //Materialnahme
+                Materialnahme = Namensdeklaration(Material);
+
                 //Berechnung Material 
                 Masse = Massenberechnung(Material, Volumen);
                 #endregion Berechnung_Volumen/Masse
                 #region Allgemeine_Ausgabe
-
+                Console.WriteLine("Material: "+Materialnahme);
                 Console.WriteLine("");
                 Console.WriteLine("Flächeninhalt des Querschnittes = " + Convert.ToString(Flächeninhalt) + "mm^2"); // Ausgabe Flächeninhalt 
-                Console.WriteLine("Flächenschwerpunkt: XS = "+FlächenschwerpunktXS+" YS = "+FlächenschwerpunktYS); // Ausgabe Flächenschwerpunkt 
-                Console.WriteLine(String.Format("Flächenträgheitsmoment IXX = {0:00}", IXX) + "mm^4"); // Ausgabe IXX
-                Console.WriteLine(String.Format("Flächenträgheitsmoment IYY = {0:00}", IYY) + "mm^4"); // Ausgabe IYY 
-                Console.WriteLine(String.Format("Flächenträgheitsmoment IXY = {0:00}", IXY) + "mm^4"); // Ausgabe IXY
-                Console.WriteLine(String.Format("Volumen = {0:00.000}", Volumen / 1000000) + "Liter");
-                Console.WriteLine(String.Format("Masse = {0:00.000}", Masse / 1000) + "kg");
+                Console.WriteLine("Flächenschwerpunkt:          XS = "+FlächenschwerpunktXS+"/YS = "+FlächenschwerpunktYS); // Ausgabe Flächenschwerpunkt 
+                Console.WriteLine(String.Format("Flächenträgheitsmoment      IXX = {0:00}", IXX) + "mm^4"); // Ausgabe IXX
+                Console.WriteLine(String.Format("Flächenträgheitsmoment      IYY = {0:00}", IYY) + "mm^4"); // Ausgabe IYY 
+                Console.WriteLine(String.Format("Flächenträgheitsmoment      IXY = {0:00}", IXY) + "mm^4"); // Ausgabe IXY
+                Console.WriteLine(String.Format("Volumen                         = {0:00.000}", Volumen / 1000000) + "Liter");
+                Console.WriteLine(String.Format("Masse                           = {0:00.000}", Masse / 1000) + "kg");
 
                 Console.ReadKey();
 
@@ -494,14 +507,30 @@ namespace Allgemeine_Profilberechnungen
             lkVolumen = (lkFläche * lkLänge);
             return lkVolumen;//mm^3
         }
+        
+        static string Namensdeklaration(int lkMaterial)
+        { 
+            string lkName="0";
+            if (lkMaterial == 1)//Stahl 
+            {
+                lkName= "Stahl" ;
 
-        static double Massenberechnung(double lkMaterial, double lkVolumen)
+            }
+            else if (lkMaterial == 2)//Aluminium 
+            {
+                lkName = "Aluminium ";
+            }
+
+            return lkName;
+        }
+        static double Massenberechnung(int lkMaterial, double lkVolumen)
         {
             double lkDichte = 0;
             double lkMasse;
             if (lkMaterial == 1)//Stahl 
             {
                 lkDichte = 7.85;
+                
             }
             else if (lkMaterial == 2)//Aluminium 
             {
