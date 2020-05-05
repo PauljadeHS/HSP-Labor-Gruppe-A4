@@ -444,10 +444,10 @@ namespace Allgemeine_Profilberechnungen
                     Flächeninhalt = FlächenberechnungLP(Breite, Höhe, Profildicke);
 
                     //Berechnung Flächenschwerpunkt XS
-                    FlächenschwerpunktXS = FlächenschwerpunktXSLP(Breite, Höhe, Profildicke);
+                    FlächenschwerpunktXS = FlächenschwerpunktXSLP(Breite, Höhe, Profildicke, Flächeninhalt);
 
                     //Berechnung Flächenschwerpunkt YS
-                    FlächenschwerpunktYS = FlächenschwerpunktYSLP(Breite, Höhe, Profildicke);
+                    FlächenschwerpunktYS = FlächenschwerpunktXSLP(Höhe, Breite, Profildicke, Flächeninhalt);
 
                     //Berechnung Flächenträgheitsmoment IXX
                     IXX = FlächenträgheitsmomentIXXLP(Breite, Höhe, Profildicke, Flächeninhalt, FlächenschwerpunktYS);
@@ -479,6 +479,8 @@ namespace Allgemeine_Profilberechnungen
                 #endregion Berechnung_Volumen/Masse
                 #region Allgemeine_Ausgabe
                 Console.WriteLine("Material: "+Materialnahme);
+                Console.WriteLine("");
+                Console.WriteLine("Folgende Berechnungen sind ohne Gewähr!!!");
                 Console.WriteLine("");
                 Console.WriteLine("Flächeninhalt des Querschnittes = " + Convert.ToString(Flächeninhalt) + "mm^2"); // Ausgabe Flächeninhalt 
                 Console.WriteLine("Flächenschwerpunkt:          XS = "+FlächenschwerpunktXS+"/YS = "+FlächenschwerpunktYS); // Ausgabe Flächenschwerpunkt 
@@ -730,43 +732,32 @@ namespace Allgemeine_Profilberechnungen
         static double FlächenberechnungLP(double lkBreite, double lkHöhe, double lkProfildicke)
         {
             double lkFlächeninhalt;
-            lkFlächeninhalt = lkBreite + lkHöhe - (lkBreite - lkProfildicke) * (lkHöhe - lkProfildicke);
+            lkFlächeninhalt = lkBreite * lkHöhe - (lkBreite - lkProfildicke) * (lkHöhe - lkProfildicke);
 
             return lkFlächeninhalt;
         }
 
-        static double FlächenschwerpunktXSLP(double lkBreite, double lkHöhe,double lkProfildicke)
+        static double FlächenschwerpunktXSLP(double lkBreite, double lkHöhe,double lkProfildicke, double lkFlächeninhalt )
         {
-            double lkxs, lka1, lka2;
-            lka1 = lkHöhe * lkProfildicke;
-            lka2 = (lkBreite - lkProfildicke) * lkProfildicke;
-            lkxs = (lka1 * (lkProfildicke / 2) + lka2 * (lkBreite/2)) / (lka1 + lka2);
+            double lkxs;
+
+           lkxs =((lkHöhe*lkBreite*(lkBreite/2))-((lkHöhe-lkProfildicke)*(lkBreite-lkProfildicke)* ((lkBreite - lkProfildicke)/2)))/lkFlächeninhalt ;
 
             return lkxs;
         }
 
-        static double FlächenschwerpunktYSLP(double lkBreite, double lkHöhe, double lkProfildicke)
-        {
-            double lkys, lka1, lka2;
-            lka1 = lkHöhe * lkProfildicke;
-            lka2 = (lkBreite - lkProfildicke) * lkProfildicke;
-            lkys = (lka1 * (lkHöhe / 2) + lka2 * (lkProfildicke / 2))/(lka1 + lka2);
-
-            return lkys;
-        }
-
-        static double FlächenträgheitsmomentIXXLP(double lkBreite, double lkHöhe, double lkProfildicke,double lkFlächeninhalt, double lkFlächenschwerpunktYS)
+        static double FlächenträgheitsmomentIXXLP(double lkBreite, double lkHöhe, double lkProfildicke, double lkFlächeninhalt, double lkFlächenschwerpunktYS)
         {
             double lkFlächenträgheitsmomentIXX;
-            lkFlächenträgheitsmomentIXX = ((lkBreite * Math.Pow(lkHöhe, 3)) / 3) - (((lkBreite - lkProfildicke) * Math.Pow(lkHöhe - lkProfildicke, 3)) / 3) - lkFlächeninhalt * Math.Pow(lkHöhe - lkFlächenschwerpunktYS, 2);
-
+            lkFlächenträgheitsmomentIXX = ((lkBreite * Math.Pow(lkHöhe, 3)) / 3) - (((lkBreite - lkProfildicke) * Math.Pow(lkHöhe - lkProfildicke, 3)) / 3) - lkFlächeninhalt * Math.Pow(lkFlächenschwerpunktYS, 2);
+            
             return lkFlächenträgheitsmomentIXX;
-        }
 
-        static double FlächenträgheitsmomentIYYLP(double lkBreite, double lkHöhe, double lkProfildicke ,double lkFlächeninhalt, double lkFlächenschwerpunktXS)
+        }
+            static double FlächenträgheitsmomentIYYLP(double lkBreite, double lkHöhe, double lkProfildicke ,double lkFlächeninhalt, double lkFlächenschwerpunktXS)
         {
             double lkFlächenträgheitsmomentIYY;
-            lkFlächenträgheitsmomentIYY = ((lkHöhe * Math.Pow(lkBreite, 3)) / 3) - (((lkHöhe - lkProfildicke) * Math.Pow(lkBreite - lkProfildicke, 3)) / 3) - lkFlächeninhalt * Math.Pow(lkBreite - lkFlächenschwerpunktXS, 2);
+            lkFlächenträgheitsmomentIYY = ((lkHöhe * Math.Pow(lkBreite, 3)) / 3) - (((lkHöhe - lkProfildicke) * Math.Pow(lkBreite - lkProfildicke, 3)) / 3) - lkFlächeninhalt * Math.Pow(lkFlächenschwerpunktXS, 2);
 
             return lkFlächenträgheitsmomentIYY;
         }
@@ -774,7 +765,7 @@ namespace Allgemeine_Profilberechnungen
         static double FlächenträgheitsmomentIXYLP(double lkBreite, double lkHöhe, double lkProfildicke, double lkFlächeninhalt, double lkFlächenschwerpunktXS, double lkFlächenschwerpunktYS)
         {
             double lkFlächenträgheitsmomentIXYLP;
-            lkFlächenträgheitsmomentIXYLP = ((Math.Pow(lkHöhe, 2) * Math.Pow(lkBreite, 2)) / 4) + ((Math.Pow(lkHöhe - lkProfildicke, 2) * Math.Pow(lkBreite - lkProfildicke, 2)) / 4) + lkFlächeninhalt * (lkHöhe - lkFlächenschwerpunktYS) * (lkBreite - lkFlächenschwerpunktXS);
+            lkFlächenträgheitsmomentIXYLP = (-(Math.Pow(lkHöhe, 2) * Math.Pow(lkBreite, 2)) / 4) + ((Math.Pow(lkHöhe - lkProfildicke, 2) * Math.Pow(lkBreite - lkProfildicke, 2)) / 4) + lkFlächeninhalt * (lkFlächenschwerpunktYS) * (lkFlächenschwerpunktXS);
 
                 return lkFlächenträgheitsmomentIXYLP;
         }
