@@ -15,11 +15,11 @@ namespace Allgemeine_Profilberechnungen
         {
             //Variablen 
             int Auswahl;
-            int Material;
+            int Material=0;
 
             double Breite;
             double Höhe;
-            double Länge;
+            double Länge=0;
             double Volumen;
             double Masse;
             double Flächeninhalt =0;
@@ -54,17 +54,20 @@ namespace Allgemeine_Profilberechnungen
                     Console.ReadKey();
                 } //Plausibilitätsprüfung
 
-                //Eingabe Länge 
-                Console.WriteLine("Geben Sie die Länge des Profils in mm an ");
-                Länge = Convert.ToDouble(Console.ReadLine());
-                Console.Clear();
+                if (Auswahl < 9)
+                {
+                    //Eingabe Länge 
+                    Console.WriteLine("Geben Sie die Länge des Profils in mm an ");
+                    Länge = Convert.ToDouble(Console.ReadLine());
+                    Console.Clear();
 
-                //Eingabe Material 
-                Console.WriteLine("Aus welchem Material ist das Profil? ");
-                Console.WriteLine("1 = Stahl ");
-                Console.WriteLine("2 = Aluminium ");
-                Material = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
+                    //Eingabe Material 
+                    Console.WriteLine("Aus welchem Material ist das Profil? ");
+                    Console.WriteLine("1 = Stahl ");
+                    Console.WriteLine("2 = Aluminium ");
+                    Material = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
+                }
 
                 #region Rechteck 
                 if (Auswahl == 1)
