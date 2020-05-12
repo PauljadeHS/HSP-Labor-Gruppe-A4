@@ -53,7 +53,7 @@ namespace Profilrechner
             double SchwerpunktXS = RP.FlächenschwerpunktXS();
             double SchwerpunktYS = RP.FlächenschwerpunktYS();
             double Volumeninhalt = RP.Volumen();
-            tb_Flaecheninhalt.Text = Convert.ToString(Flächeninhalt);
+            tb_Querschnittsflaeche.Text = Convert.ToString(Flächeninhalt);
             tb_Volumen.Text = Convert.ToString(Volumeninhalt);
 
         }

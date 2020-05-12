@@ -125,5 +125,8 @@
   <ItemGroup>
     <Resource Include="Stabil Profil.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RechteckDetail.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

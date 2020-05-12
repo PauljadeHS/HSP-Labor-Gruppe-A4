@@ -8,19 +8,42 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1_Rechteckprofil">
 
-    <Grid>
+    <Grid Margin="0,10,0,-10" Height="450" VerticalAlignment="Top" HorizontalAlignment="Left" Width="800">
         <TextBlock Text="Rechteckprofil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,20,0,0" FontWeight="Bold" FontSize="20"/>
-        <Label x:Name="lbl_Breite" Content="Breite in mm" HorizontalAlignment="Left" Margin="300,60,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="400,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Breite_TextChanged"/>
-        <Label x:Name="lbl_Hoehe" Content="Höhe in mm" HorizontalAlignment="Left" Margin="550,60,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="650,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Hoehe_TextChanged"/>
-        <Label x:Name="lbl_Laenge" Content="Länge in mm" HorizontalAlignment="Left" Margin="300,120,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="400,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Laenge_TextChanged"/>
-        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="650,200,0,0" Width="120" Height="40" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Click="but_Berechnen_Click"/>
+        <Label x:Name="lbl_Breite" Content="Breite in mm" HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="140,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Breite_TextChanged"/>
+        <Label x:Name="lbl_Hoehe" Content="Höhe in mm" HorizontalAlignment="Left" Margin="40,120,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="140,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Hoehe_TextChanged"/>
+        <Label x:Name="lbl_Laenge" Content="Länge in mm" HorizontalAlignment="Left" Margin="40,160,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="140,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Laenge_TextChanged"/>
+        <Label x:Name="lbl_Material" Content="Material" HorizontalAlignment="Left" Margin="40,200,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <ComboBox x:Name="cb_Material" HorizontalAlignment="Left" Margin="140,200,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="40,370,0,0" Width="120" FontSize="18" FontWeight="Bold" Click="but_Berechnen_Click" Height="40" VerticalAlignment="Top"/>
+        <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="280"/>
 
-        <Label x:Name="lbl_Flaecheninhalt" Content="Flächeninhalt" HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
-        <TextBox x:Name="tb_Flaecheninhalt" HorizontalAlignment="Left" Height="25" Margin="400,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lbl_Volumen" Content="Volumen" HorizontalAlignment="Left" Margin="550,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
-        <TextBox x:Name="tb_Volumen" HorizontalAlignment="Left" Height="25" Margin="650,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="lbl_Querschnittsflaeche" Content="Querschnittsfläche" HorizontalAlignment="Left" Margin="320,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+        <TextBox x:Name="tb_Querschnittsflaeche" HorizontalAlignment="Left" Height="25" Margin="430,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <Label x:Name="lbl_Volumen" Content="Volumen" HorizontalAlignment="Left" Margin="320,330,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+        <TextBox x:Name="tb_Volumen" HorizontalAlignment="Left" Height="25" Margin="430,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <Label x:Name="lbl_Masse" Content="Masse" HorizontalAlignment="Left" Margin="320,360,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+        <TextBox x:Name="tb_Masse" HorizontalAlignment="Left" Height="25" Margin="430,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <Label x:Name="lbl_Materialkosten" Content="Materialkosten" HorizontalAlignment="Left" Margin="320,390,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_Materialkosten" HorizontalAlignment="Left" Height="25" Margin="430,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <Label x:Name="lbl_Schwerpunktkoordinaten" Content="Schwerpunktkoordinaten Xs/Ys" HorizontalAlignment="Left" Margin="580,300,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_Schwerpunktkoordinaten" HorizontalAlignment="Left" Height="25" Margin="580,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" BorderThickness="0"/>
+        <Label x:Name="lbl_FMTX" Content="FTM X" HorizontalAlignment="Left" Margin="580,360,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_FTMX" HorizontalAlignment="Left" Height="25" Margin="650,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <Label x:Name="lbl_FTMY" Content="FTM Y" HorizontalAlignment="Left" Margin="580,390,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_FTMY" HorizontalAlignment="Left" Height="25" Margin="650,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <Border BorderBrush="Black" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="160" Margin="289,280,0,0" VerticalAlignment="Top" Width="499"/>
+
+        <Image x:Name="img_RechteckDetail" HorizontalAlignment="Left" Height="237" Margin="434,19,0,0" VerticalAlignment="Top" Width="235" Source="RechteckDetail.jpg"/>
+
+
+
+
+
+
     </Grid>
 </Page>
