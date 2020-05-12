@@ -9,7 +9,7 @@
     <Grid>
 
         <Image x:Name="Logo1" Margin="15,20,0,0" Source="Stabil Profil.jpg" HorizontalAlignment="Left" Width="150" Height="80" VerticalAlignment="Top"/>
-        <StackPanel x:Name="Profilauswahl" Orientation="Vertical" Height="330" VerticalAlignment="Top" Margin="5,110,0,0" HorizontalAlignment="Left" Width="170">
+        <StackPanel x:Name="Profilauswahl" Orientation="Vertical" Height="430" VerticalAlignment="Top" Margin="5,110,0,0" HorizontalAlignment="Left" Width="170">
 
             <Button x:Name="btn_Rechteckprofil" Content="Rechteckprofil" MinWidth="150" Margin="10,10,0,0" Click="BtnClickP1Rechteckprofil" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left"/>
             <Button x:Name="btn_Rechteckhohlprofil" Content="Rechteckhohlprofil" MinWidth="150" Margin="10,10,0,0" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left" Click="BtnClickP2Rechteckhohlprofil" />
@@ -19,8 +19,9 @@
             <Button x:Name="btn_DoppelTrofil" Content="Doppel-T-Profil" MinWidth="150" Margin="10,10,0,0" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left" />
             <Button x:Name="btn_UProfil" Content="U-Profil" MinWidth="150" Margin="10,10,0,0" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left" />
             <Button x:Name="btn_LProfil" Content="L-Profil" MinWidth="150" Margin="10,10,0,0" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left" />
+            <Button x:Name="tbn_Beenden" Content="Beenden" MinWidth="150" Margin="10,60,0,0" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left" Padding="1" Background="#FF8F8989" />
         </StackPanel>
-        <Frame x:Name="Main" NavigationUIVisibility="Hidden" Margin="180,0,0,0" Height="570" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="820"/>
+        <Frame x:Name="Main" NavigationUIVisibility="Hidden" Margin="180,0,0,0" Height="570" VerticalAlignment="Top" HorizontalAlignment="Left" Width="820"/>
         <Label x:Name="lbl_Begrüßung" Content="Wählen Sie ihr gewünschtes Profils aus?" HorizontalAlignment="Left" Margin="323,236,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
 
 
