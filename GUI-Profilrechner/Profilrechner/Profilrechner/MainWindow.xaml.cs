@@ -20,6 +20,7 @@ namespace Profilrechner
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -48,5 +49,15 @@ namespace Profilrechner
         }
 
         
+    }
+
+    abstract class Profil:Object
+    {
+        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite,Flächeninhalt;
+
+        public abstract double Flächenberechnung();
+        public abstract double FlächenschwerpunktXS();
+        public abstract double FlächenschwerpunktYS();
+        public abstract double Volumen();
     }
 }

@@ -11,12 +11,12 @@
     <Grid>
         <TextBlock Text="Rechteckprofil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,20,0,0" FontWeight="Bold" FontSize="20"/>
         <Label x:Name="lbl_Breite" Content="Breite in mm" HorizontalAlignment="Left" Margin="300,60,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="400,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="400,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Breite_TextChanged"/>
         <Label x:Name="lbl_Hoehe" Content="Höhe in mm" HorizontalAlignment="Left" Margin="550,60,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="650,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="650,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Hoehe_TextChanged"/>
         <Label x:Name="lbl_Laenge" Content="Länge in mm" HorizontalAlignment="Left" Margin="300,120,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="400,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="650,200,0,0" Width="120" Height="40" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="400,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Laenge_TextChanged"/>
+        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="650,200,0,0" Width="120" Height="40" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Click="but_Berechnen_Click"/>
 
         <Label x:Name="lbl_Flaecheninhalt" Content="Flächeninhalt" HorizontalAlignment="Left" Margin="300,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
         <TextBox x:Name="tb_Flaecheninhalt" HorizontalAlignment="Left" Height="25" Margin="400,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
