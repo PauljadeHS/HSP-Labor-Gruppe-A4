@@ -17,9 +17,15 @@
         <Label x:Name="lbl_Laenge" Content="Länge in mm" HorizontalAlignment="Left" Margin="40,160,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
         <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="140,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Laenge_TextChanged"/>
         <Label x:Name="lbl_Material" Content="Material" HorizontalAlignment="Left" Margin="40,200,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <ComboBox x:Name="cb_Material" HorizontalAlignment="Left" Margin="140,200,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+        <ComboBox x:Name="cb_Material" HorizontalAlignment="Left" Margin="140,200,0,0" VerticalAlignment="Top" Width="120" Height="25">
+            <ComboBoxItem IsSelected="True">S235 (Stahl)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected">EN AW-6060 (Aluminium)</ComboBoxItem>
+            <ComboBoxItem>S355</ComboBoxItem>
+            <ComboBoxItem>Aluminium 2</ComboBoxItem>
+            <ComboBoxItem>Messing </ComboBoxItem>
+        </ComboBox>
         <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="40,370,0,0" Width="120" FontSize="18" FontWeight="Bold" Click="but_Berechnen_Click" Height="40" VerticalAlignment="Top"/>
-        <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="420" Margin="10,15,0,0" VerticalAlignment="Top" Width="280"/>
+        <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="420" Margin="9,20,0,0" VerticalAlignment="Top" Width="280"/>
 
 
         <Label x:Name="lbl_Querschnittsflaeche" Content="Querschnittsfläche" HorizontalAlignment="Left" Margin="320,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>

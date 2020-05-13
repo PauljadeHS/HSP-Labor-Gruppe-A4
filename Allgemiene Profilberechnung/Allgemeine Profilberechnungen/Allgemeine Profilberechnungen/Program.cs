@@ -72,6 +72,7 @@ namespace Allgemeine_Profilberechnungen
                 #region Rechteck 
                 if (Auswahl == 1)
                 {
+                    
                     #region Eingabe 
 
                     Console.WriteLine("Geben Sie die Breite des Rechteckes in mm an");
@@ -480,6 +481,8 @@ namespace Allgemeine_Profilberechnungen
                 //Berechnung Material 
                 Masse = Massenberechnung(Material, Volumen);
                 #endregion Berechnung_Volumen/Masse
+
+
                 #region Allgemeine_Ausgabe
                 Console.WriteLine("Material: "+Materialnahme);
                 Console.WriteLine("");

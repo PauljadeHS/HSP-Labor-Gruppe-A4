@@ -53,11 +53,39 @@ namespace Profilrechner
 
     abstract class Profil:Object
     {
-        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite,Flächeninhalt;
-
+        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite, Flächeninhalt, Volumeninhalt;
+        public string Material;
         public abstract double Flächenberechnung();
         public abstract double FlächenschwerpunktXS();
         public abstract double FlächenschwerpunktYS();
         public abstract double Volumen();
+
+        public double Massenberechnung()
+        {
+            double Dichte = 0;
+            if (Material == "S235 (Stahl)")
+            {
+                Dichte = 7.35;
+            }
+            else if (Material == "EN AW - 6060(Aluminium)")
+            {
+                Dichte = 2.6;
+            }
+            else if (Material == "S355")
+            {
+                Dichte = 7;
+            }
+            else if (Material == "Aluminium 2")
+            {
+                Dichte = 7;
+            }
+            else if (Material == "Messing")
+            {
+                Dichte = 7;
+            }
+            double a = Volumeninhalt * Dichte;
+            return a;
+
+        }
     }
 }
