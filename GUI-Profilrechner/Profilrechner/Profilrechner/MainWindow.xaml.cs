@@ -48,44 +48,70 @@ namespace Profilrechner
             lbl_Begrüßung.Visibility = Visibility.Hidden;
         }
 
-        
+        private void tbn_Beenden_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 
     abstract class Profil:Object
     {
-        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite, Flächeninhalt, Volumeninhalt;
+        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite, Flächeninhalt, Volumeninhalt, Masse, Materialkf;
         public string Material;
         public abstract double Flächenberechnung();
         public abstract double FlächenschwerpunktXS();
         public abstract double FlächenschwerpunktYS();
-        public abstract double Volumen();
+        public abstract double FlächenträgheitsmomentIXX();
+        public abstract double FlächenträgheitsmomentIYY();
+        
+        public double Volumen()
+        {
+            double lkVolumen;
+            lkVolumen = Flächeninhalt * Länge;
+            return lkVolumen;
+        }
 
         public double Massenberechnung()
         {
             double Dichte = 0;
+            
             if (Material == "S235 (Stahl)")
             {
                 Dichte = 7.35;
+                Materialkf = 11;
             }
             else if (Material == "EN AW - 6060(Aluminium)")
             {
                 Dichte = 2.6;
+                Materialkf = 11;
             }
             else if (Material == "S355")
             {
                 Dichte = 7;
+                Materialkf = 11;
             }
             else if (Material == "Aluminium 2")
             {
                 Dichte = 7;
+                Materialkf = 11;
             }
             else if (Material == "Messing")
             {
                 Dichte = 7;
+                Materialkf = 11;
             }
             double a = Volumeninhalt * Dichte;
+            a = Masse;
             return a;
 
         }
+        public double Materialkosten()
+        {
+            double a;
+            a = Masse * Materialkf;
+            return a;
+                
+        }
+
     }
 }
