@@ -83,6 +83,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Page5_T-Profil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page6_Doppel-T-Profil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page7_U-Profil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page8_L-Profil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Page1_Rechteckprofil.xaml.cs">
@@ -96,6 +112,18 @@
     </Compile>
     <Compile Include="Page4_Kreishohlprofil.xaml.cs">
       <DependentUpon>Page4_Kreishohlprofil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page5_T-Profil.xaml.cs">
+      <DependentUpon>Page5_T-Profil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page6_Doppel-T-Profil.xaml.cs">
+      <DependentUpon>Page6_Doppel-T-Profil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page7_U-Profil.xaml.cs">
+      <DependentUpon>Page7_U-Profil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page8_L-Profil.xaml.cs">
+      <DependentUpon>Page8_L-Profil.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

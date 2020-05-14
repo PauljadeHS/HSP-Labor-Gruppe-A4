@@ -9,15 +9,16 @@
       Title="Page2_Rechteckhohlprofil">
 
     <Grid Height="450" VerticalAlignment="Top" Margin="0,0,0,0" HorizontalAlignment="Left" Width="800">
+        <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="420" Margin="10,20,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBlock Text="Rechteckhohlprofil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,20,0,0" FontWeight="Bold" FontSize="20"/>
         <Label x:Name="lbl_Breite" Content="Breite in mm" HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="140,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Breite_TextChanged"/>
+        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="140,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Breite_TextChanged"/>
         <Label x:Name="lbl_Hoehe" Content="Höhe in mm" HorizontalAlignment="Left" Margin="40,120,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="140,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Hoehe_TextChanged"/>
+        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="140,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Hoehe_TextChanged"/>
         <Label x:Name="lbl_Laenge" Content="Länge in mm" HorizontalAlignment="Left" Margin="40,160,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="140,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Laenge_TextChanged"/>
+        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="140,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Laenge_TextChanged"/>
         <Label x:Name="lab_Profildicke" Content="Profildicke" HorizontalAlignment="Left" Margin="40,200,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Profildicke" HorizontalAlignment="Left" Height="23" Margin="140,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tb_Profildicke_TextChanged"/>
+        <TextBox x:Name="tb_Profildicke" HorizontalAlignment="Left" Height="23" Margin="140,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Profildicke_TextChanged"/>
         <Label x:Name="lbl_Material" Content="Material" HorizontalAlignment="Left" Margin="40,240,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
         <ComboBox HorizontalAlignment="Left" Margin="140,240,0,0" VerticalAlignment="Top" Width="120" Height="25">
             <ComboBoxItem IsSelected="True">S235 (Stahl)</ComboBoxItem>
@@ -27,23 +28,29 @@
             <ComboBoxItem>Messing</ComboBoxItem>
         </ComboBox>
         <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="40,370,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="but_Berechnen_Click"/>
-        <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="420" Margin="9,10,0,0" VerticalAlignment="Top" Width="280"/>
 
+
+        <Border BorderBrush="Black" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="160" Margin="295,280,0,0" VerticalAlignment="Top" Width="499">
+          
+       
+        </Border>
         <Label x:Name="lbl_Querschnittsflaeche" Content="Querschnittsfläche in cm^2" HorizontalAlignment="Left" Margin="320,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
-        <TextBox x:Name="tb_Querschnittsflaeche" HorizontalAlignment="Left" Height="25" Margin="430,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <TextBox x:Name="tb_Querschnittsflaeche" HorizontalAlignment="Left" Height="25" Margin="430,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" TextAlignment="Right" TextChanged="tb_Querschnittsflaeche_TextChanged" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Volumen" Content="Volumen im dm^3" HorizontalAlignment="Left" Margin="320,330,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
-        <TextBox x:Name="tb_Volumen" HorizontalAlignment="Left" Height="25" Margin="430,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <TextBox x:Name="tb_Volumen" HorizontalAlignment="Left" Height="25" Margin="430,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Masse" Content="Masse" HorizontalAlignment="Left" Margin="320,360,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
-        <TextBox x:Name="tb_Masse" HorizontalAlignment="Left" Height="25" Margin="430,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <TextBox x:Name="tb_Masse" HorizontalAlignment="Left" Height="25" Margin="430,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Materialkosten" Content="Materialkosten" HorizontalAlignment="Left" Margin="320,390,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_Materialkosten" HorizontalAlignment="Left" Height="25" Margin="430,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <TextBox x:Name="tb_Materialkosten" HorizontalAlignment="Left" Height="25" Margin="430,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Schwerpunktkoordinaten" Content="Schwerpunktkoordinaten" HorizontalAlignment="Left" Margin="580,300,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_Schwerpunktkoordinaten" HorizontalAlignment="Left" Height="25" Margin="580,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" BorderThickness="0"/>
+        <TextBox x:Name="tb_Schwerpunktkoordinaten" HorizontalAlignment="Left" Height="25" Margin="580,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" BorderThickness="0" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_FMTX" Content="FTM X" HorizontalAlignment="Left" Margin="580,360,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_FTMX" HorizontalAlignment="Left" Height="25" Margin="650,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
+        <TextBox x:Name="tb_FTMX" HorizontalAlignment="Left" Height="25" Margin="650,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_FTMY" Content="FTM Y" HorizontalAlignment="Left" Margin="580,390,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_FTMY" HorizontalAlignment="Left" Height="25" Margin="650,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0"/>
-        <Border BorderBrush="Black" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="160" Margin="289,280,0,0" VerticalAlignment="Top" Width="499"/>
+        <TextBox x:Name="tb_FTMY" HorizontalAlignment="Left" Height="25" Margin="650,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center"/>
         
+
+
+
     </Grid>
 </Page>

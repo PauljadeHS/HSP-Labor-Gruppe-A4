@@ -167,5 +167,10 @@ namespace Profilrechner
                 return lkIYY;
             }
         }
+
+        private void tb_Querschnittsflaeche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -48,9 +48,33 @@ namespace Profilrechner
             lbl_Begrüßung.Visibility = Visibility.Hidden;
         }
 
-        private void tbn_Beenden_Click(object sender, RoutedEventArgs e)
+        private void BtnClickP5TProfil(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Page5_T_Profil();
+            lbl_Begrüßung.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnClickP6DoppelTProfil(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Page6_Doppel_T_Profil();
+            lbl_Begrüßung.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnClickP7UProfil(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Page7_U_Profil();
+            lbl_Begrüßung.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnClickP8LProfil(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Page8_L_Profil();
+            lbl_Begrüßung.Visibility = Visibility.Hidden;
+        }
+        private void btn_Beenden_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+
         }
     }
 
