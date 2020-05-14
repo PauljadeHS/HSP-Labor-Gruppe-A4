@@ -25,7 +25,6 @@ namespace Profilrechner
         {
             InitializeComponent();
             RHP = new Rechteckhohl(); 
-            RHP.Material = "S235 (Stahl)";
         }
         //Eingabefeld Breite 
 

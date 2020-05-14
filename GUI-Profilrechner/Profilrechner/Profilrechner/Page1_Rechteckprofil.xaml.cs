@@ -25,7 +25,6 @@ namespace Profilrechner
         {
             InitializeComponent();
             RP = new Rechteck();
-            RP.Material = "S235 (Stahl)";
         }
 
         //Eingabefeld Breite 
@@ -50,7 +49,7 @@ namespace Profilrechner
                         tb_Breite.Text = "";
                     }
             }
-            
+
         }
 
         //Eingabefeld Länge
@@ -75,7 +74,7 @@ namespace Profilrechner
                     }
             }
         }
-            //Eingabefeld Höhe 
+        //Eingabefeld Höhe 
         private void tb_Hoehe_TextChanged(object sender, TextChangedEventArgs e)
         {
             string test;
@@ -97,7 +96,7 @@ namespace Profilrechner
                     }
             }
         }
-        
+
         //Eingeabe Material 
         //private void cb_Material_Selected(object sender, TextChangedEventArgs e)
         //{
@@ -117,21 +116,39 @@ namespace Profilrechner
             double SchwerpunktYS = RP.FlächenschwerpunktYS();
             double IXX = RP.FlächenträgheitsmomentIXX();
             double IYY = RP.FlächenträgheitsmomentIYY();
-            tb_Querschnittsflaeche.Text = Convert.ToString(Flächeninhalt/100); //Flächeninhalt umrechnung im cm^2
-            tb_Volumen.Text = Convert.ToString(Volumeninhalt / 1000000);       //Querschnittsfläche umgerechnet in dm^3
-            tb_Masse.Text = Convert.ToString(Masse);
-            tb_Materialkosten.Text = Convert.ToString(Materialkosten);
-            tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys = " +SchwerpunktXS)+"/"+ Convert.ToString(SchwerpunktYS);
-            tb_FTMX.Text = Convert.ToString((String.Format(" {0:0.0}", IXX/10000) + "cm^4"));
-            tb_FTMY.Text = Convert.ToString((String.Format(" {0:0.0}", IYY/10000) + "cm^4"));
+            tb_Querschnittsflaeche.Text = Convert.ToString(Flächeninhalt / 100 + " cm^2"); //Flächeninhalt umrechnung im cm^2
+            tb_Volumen.Text = Convert.ToString(Volumeninhalt / 1000000+ " l");       //Querschnittsfläche umgerechnet in dm^3
+            tb_Masse.Text = Convert.ToString((String.Format(" {0:0.000}", Masse /1000) + " kg")); //Masse in kg
+            tb_Materialkosten.Text = Convert.ToString((String.Format(" {0:0.00}", Materialkosten) + " €"));
+            tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys       = " + SchwerpunktXS + " mm / " + SchwerpunktYS + " mm");
+            tb_FTMX.Text = Convert.ToString("="+(String.Format(" {0:0.0}", IXX / 10000) + " cm^4"));
+            tb_FTMY.Text = Convert.ToString("="+(String.Format(" {0:0.0}", IYY / 10000) + " cm^4"));
 
 
         }
-
+        ///IsSelected="True"
+        private void ComboBoxItem_Selected_3(object sender, RoutedEventArgs e)
+        {
+            RP.Materialint = 1; //S235 (Stahl)
+        }
         private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
         {
-            ComboBoxItem cbi = (ComboBoxItem)sender;
-            RP.Material = Convert.ToString(cbi);
+            RP.Materialint = 2; //S355 (Stahl)
+        }
+
+        private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+            RP.Materialint = 3; // EN AW-6060 (Aluminium)
+        }
+
+        private void ComboBoxItem_Selected_2(object sender, RoutedEventArgs e)
+        {
+            RP.Materialint = 4; // Aluminium 2
+        }
+
+        private void ComboBoxItem_Selected_4(object sender, RoutedEventArgs e)
+        {
+            RP.Materialint = 5; // Messing
         }
     }
     abstract class SymmetrischeFLPs : Profil

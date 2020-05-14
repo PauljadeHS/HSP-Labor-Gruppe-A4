@@ -81,7 +81,7 @@ namespace Profilrechner
     abstract class Profil:Object
     {
         public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite, Flächeninhalt, Volumeninhalt, Masse, Materialkf;
-        public string Material;
+        public int Materialint;
         public abstract double Flächenberechnung();
         public abstract double FlächenschwerpunktXS();
         public abstract double FlächenschwerpunktYS();
@@ -99,41 +99,43 @@ namespace Profilrechner
         {
             double Dichte = 0;
             
-            if (Material == "S235 (Stahl)")
+            if (Materialint == 1)
             {
-                Dichte = 7.35;
-                Materialkf = 11;
+                Dichte = 0.00785;
+                Materialkf = 1;
             }
-            else if (Material == "EN AW - 6060(Aluminium)")
+            else if (Materialint == 2)
             {
-                Dichte = 2.6;
-                Materialkf = 11;
+                Dichte = 0.00785;
+                Materialkf = 1.1;
             }
-            else if (Material == "S355")
+            else if (Materialint == 3)
             {
-                Dichte = 7;
-                Materialkf = 11;
+                Dichte = 0.0027;
+                Materialkf = 10
+                    ;
             }
-            else if (Material == "Aluminium 2")
+            else if (Materialint == 4)
             {
-                Dichte = 7;
-                Materialkf = 11;
+                Dichte = 0.0027;
+                Materialkf = 12;
             }
-            else if (Material == "Messing")
+            else if (Materialint == 5)
             {
-                Dichte = 7;
-                Materialkf = 11;
+                Dichte = 0.00873;
+                Materialkf = 5;
             }
-            double a = Volumeninhalt * Dichte;
-            Masse = a;
-            return a;
+            double masse = Volumeninhalt * Dichte;
+            Masse = masse;
+            return masse;
 
         }
         public double Materialkosten()
         {
-            double a;
-            a = Masse * Materialkf;
-            return a;
+            double Kosten;
+            double Grundpreis = 0.0005;//€/g    //500€/Tonne
+            Kosten = Masse * Grundpreis* Materialkf;
+            return Kosten;
                 
         }
 
