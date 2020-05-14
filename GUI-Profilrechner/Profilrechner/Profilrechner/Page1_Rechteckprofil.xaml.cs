@@ -97,20 +97,22 @@ namespace Profilrechner
                     }
             }
         }
-            //Eingeabe Material 
-            //private void cb_Material_Selected(object sender, TextChangedEventArgs e)
-            //{
-            //RP.Material = cb_Material.SelectedItem.ToString();
-            //}
+        
+        //Eingeabe Material 
+        //private void cb_Material_Selected(object sender, TextChangedEventArgs e)
+        //{
+        //RP.Material = cb_Material.SelectedItem.ToString();
+        //}
 
-            //BerechnungsButton
-            private void but_Berechnen_Click(object sender, RoutedEventArgs e)
+        //BerechnungsButton
+        private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
             double Flächeninhalt = RP.Flächenberechnung();
             RP.Flächeninhalt = Flächeninhalt;
             double Volumeninhalt = RP.Volumen();
             RP.Volumeninhalt = Volumeninhalt;
             double Masse = RP.Massenberechnung();
+            double Materialkosten = RP.Materialkosten();
             double SchwerpunktXS = RP.FlächenschwerpunktXS();
             double SchwerpunktYS = RP.FlächenschwerpunktYS();
             double IXX = RP.FlächenträgheitsmomentIXX();
@@ -118,13 +120,19 @@ namespace Profilrechner
             tb_Querschnittsflaeche.Text = Convert.ToString(Flächeninhalt/100); //Flächeninhalt umrechnung im cm^2
             tb_Volumen.Text = Convert.ToString(Volumeninhalt / 1000000);       //Querschnittsfläche umgerechnet in dm^3
             tb_Masse.Text = Convert.ToString(Masse);
+            tb_Materialkosten.Text = Convert.ToString(Materialkosten);
             tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys = " +SchwerpunktXS)+"/"+ Convert.ToString(SchwerpunktYS);
             tb_FTMX.Text = Convert.ToString((String.Format(" {0:0.0}", IXX/10000) + "cm^4"));
             tb_FTMY.Text = Convert.ToString((String.Format(" {0:0.0}", IYY/10000) + "cm^4"));
 
 
         }
-               
+
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            ComboBoxItem cbi = (ComboBoxItem)sender;
+            RP.Material = Convert.ToString(cbi);
+        }
     }
     abstract class SymmetrischeFLPs : Profil
     {

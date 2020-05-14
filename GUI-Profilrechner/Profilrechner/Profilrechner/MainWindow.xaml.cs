@@ -101,7 +101,7 @@ namespace Profilrechner
                 Materialkf = 11;
             }
             double a = Volumeninhalt * Dichte;
-            a = Masse;
+            Masse = a;
             return a;
 
         }
