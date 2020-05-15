@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Profilrechner"
         mc:Ignorable="d"
-         Title="Stabil Profil - Profilrechner" Height="600" Width="1010" MinHeight="600" MinWidth="1010">
+        Title="Stabil Profil - Profilrechner" Height="550" Width="1010" MinHeight="550" MinWidth="1010">
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="149*"/>
-            <ColumnDefinition Width="854*"/>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="855*"/>
         </Grid.ColumnDefinitions>
 
         <Image x:Name="Logo1" Margin="15,20,0,0" Source="Stabil Profil.jpg" HorizontalAlignment="Left" Width="150" Height="80" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <StackPanel x:Name="Profilauswahl" Orientation="Vertical" Height="430" VerticalAlignment="Top" Margin="5,110,0,0" HorizontalAlignment="Left" Width="170" Grid.ColumnSpan="2">
+        <StackPanel x:Name="Profilauswahl" Orientation="Vertical" Height="330" VerticalAlignment="Top" Margin="5,110,0,0" HorizontalAlignment="Left" Width="170" Grid.ColumnSpan="2">
             <Button x:Name="btn_Rechteckprofil" Content="Rechteckprofil" MinWidth="150" Margin="10,10,0,0" Click="BtnClickP1Rechteckprofil" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left"/>
             <Button x:Name="btn_Rechteckhohlprofil" Content="Rechteckhohlprofil" MinWidth="150" Margin="10,10,0,0" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left" Click="BtnClickP2Rechteckhohlprofil" />
             <Button x:Name="btn_Kreisprofil" Content="Kreisprofil" MinWidth="150" Margin="10,10,0,0" Click="BtnClickP3Kreisprofil" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left"/>
@@ -23,7 +24,7 @@
             <Button x:Name="btn_UProfil" Content="U-Profil" MinWidth="150" Margin="10,10,0,0" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left" Click="BtnClickP7UProfil" />
             <Button x:Name="btn_LProfil" Content="L-Profil" MinWidth="150" Margin="10,10,0,0" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Left" Click="BtnClickP8LProfil" />
         </StackPanel>
-        <Frame x:Name="Main" NavigationUIVisibility="Hidden" Margin="31.239,0,0,0" Height="570" VerticalAlignment="Top" HorizontalAlignment="Left" Width="820" Grid.Column="1"/>
+        <Frame x:Name="Main" NavigationUIVisibility="Hidden" Margin="30,0,0,0" Height="520" VerticalAlignment="Top" HorizontalAlignment="Left" Width="820" Grid.Column="1"/>
         <Label x:Name="lbl_Begrüßung" Content="Wählen Sie ihr gewünschtes Profils aus?" HorizontalAlignment="Left" Margin="174.239,236,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Grid.Column="1"/>
 
         <Button x:Name="btn_Beenden" Content="Beenden"  MinWidth="150" Margin="0,0,30.2,30.4" FontWeight="Bold" MinHeight="30" Width="150" HorizontalAlignment="Right" Padding="1" Background="#FF8F8989" Height="30" VerticalAlignment="Bottom" Click="btn_Beenden_Click" Grid.Column="1" />
