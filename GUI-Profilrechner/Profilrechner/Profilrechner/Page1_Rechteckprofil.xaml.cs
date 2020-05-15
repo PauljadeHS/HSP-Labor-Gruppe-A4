@@ -33,7 +33,6 @@ namespace Profilrechner
 
             string test;
             String Zeichen = "0123456789.,";
-            //StringBuilder Zugelassen = new StringBuilder();
             if (tb_Breite.Text.Equals(""))
             { }
             else
@@ -57,7 +56,6 @@ namespace Profilrechner
         {
             string test;
             String Zeichen = "0123456789.,";
-            //StringBuilder Zugelassen = new StringBuilder();
             if (tb_Laenge.Text.Equals(""))
             { }
             else
@@ -79,7 +77,6 @@ namespace Profilrechner
         {
             string test;
             String Zeichen = "0123456789.,";
-            //StringBuilder Zugelassen = new StringBuilder();
             if (tb_Hoehe.Text.Equals(""))
             { }
             else
@@ -97,12 +94,6 @@ namespace Profilrechner
             }
         }
 
-        //Eingeabe Material 
-        //private void cb_Material_Selected(object sender, TextChangedEventArgs e)
-        //{
-        //RP.Material = cb_Material.SelectedItem.ToString();
-        //}
-
         //BerechnungsButton
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
@@ -116,14 +107,13 @@ namespace Profilrechner
             double SchwerpunktYS = RP.FlächenschwerpunktYS();
             double IXX = RP.FlächenträgheitsmomentIXX();
             double IYY = RP.FlächenträgheitsmomentIYY();
-            tb_Querschnittsflaeche.Text = Convert.ToString(Flächeninhalt / 100 + " cm^2"); //Flächeninhalt umrechnung im cm^2
-            tb_Volumen.Text = Convert.ToString(Volumeninhalt / 1000000+ " l");       //Querschnittsfläche umgerechnet in dm^3
-            tb_Masse.Text = Convert.ToString((String.Format(" {0:0.000}", Masse /1000) + " kg")); //Masse in kg
-            tb_Materialkosten.Text = Convert.ToString((String.Format(" {0:0.00}", Materialkosten) + " €"));
-            tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys       = " + SchwerpunktXS + " mm / " + SchwerpunktYS + " mm");
+            tb_Querschnittsflaeche.Text = Convert.ToString(Flächeninhalt / 100 + " cm^2");                  //Flächeninhalt umrechnung im cm^2
+            tb_Volumen.Text = Convert.ToString((String.Format("{0:0.00}", Volumeninhalt / 1000000)) + " l");//Querschnittsfläche umgerechnet in dm^3
+            tb_Masse.Text = Convert.ToString((String.Format("{0:0.000}", Masse /1000) + " kg"));            //Masse in kg
+            tb_Materialkosten.Text = Convert.ToString((String.Format("{0:0.00}", Materialkosten) + " €"));
+            tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys     = " + SchwerpunktXS + " mm / " + SchwerpunktYS + " mm");
             tb_FTMX.Text = Convert.ToString("="+(String.Format(" {0:0.0}", IXX / 10000) + " cm^4"));
             tb_FTMY.Text = Convert.ToString("="+(String.Format(" {0:0.0}", IYY / 10000) + " cm^4"));
-
 
         }
         ///IsSelected="True"

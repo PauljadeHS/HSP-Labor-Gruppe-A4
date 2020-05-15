@@ -80,8 +80,9 @@ namespace Profilrechner
 
     abstract class Profil:Object
     {
-        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite, Flächeninhalt, Volumeninhalt, Masse, Materialkf;
-        public int Materialint;
+        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite, Flächeninhalt, Volumeninhalt, Masse;
+        public double Materialkf = 1;
+        public int Materialint = 1;
         public abstract double Flächenberechnung();
         public abstract double FlächenschwerpunktXS();
         public abstract double FlächenschwerpunktYS();
@@ -99,31 +100,30 @@ namespace Profilrechner
         {
             double Dichte = 0;
             
-            if (Materialint == 1)
+            if (Materialint == 1) //S235
             {
                 Dichte = 0.00785;
                 Materialkf = 1;
             }
-            else if (Materialint == 2)
+            else if (Materialint == 2) //S355
             {
                 Dichte = 0.00785;
                 Materialkf = 1.1;
             }
-            else if (Materialint == 3)
+            else if (Materialint == 3) //AW6060
             {
                 Dichte = 0.0027;
-                Materialkf = 10
-                    ;
+                Materialkf = 3;
             }
-            else if (Materialint == 4)
+            else if (Materialint == 4)  //AW6082
             {
                 Dichte = 0.0027;
-                Materialkf = 12;
+                Materialkf = 3.2;
             }
-            else if (Materialint == 5)
+            else if (Materialint == 5) //MS63
             {
                 Dichte = 0.00873;
-                Materialkf = 5;
+                Materialkf = 8;
             }
             double masse = Volumeninhalt * Dichte;
             Masse = masse;
