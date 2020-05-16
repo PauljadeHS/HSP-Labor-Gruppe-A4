@@ -172,5 +172,35 @@ namespace Profilrechner
                 return lkIYY;
             }
         }
+
+        private void tb_Querschnittsflaeche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            RHP.Materialint = 1; //S235 (Stahl)
+        }
+
+        private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+            RHP.Materialint = 2; //S355 (Stahl)
+        }
+
+        private void ComboBoxItem_Selected_2(object sender, RoutedEventArgs e)
+        {
+            RHP.Materialint = 3; // EN AW-6060 (Aluminium)
+        }
+
+        private void ComboBoxItem_Selected_3(object sender, RoutedEventArgs e)
+        {
+            RHP.Materialint = 4; // Aluminium 2
+        }
+
+        private void ComboBoxItem_Selected_4(object sender, RoutedEventArgs e)
+        {
+            RHP.Materialint = 5; // Messing
+        }
     }
 }
