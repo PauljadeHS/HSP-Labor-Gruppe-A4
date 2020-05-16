@@ -177,5 +177,8 @@
   <ItemGroup>
     <Resource Include="T-ProfilDetail.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Doppel-T-ProfilDetail.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
