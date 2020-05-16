@@ -21,11 +21,11 @@
         <TextBox x:Name="tb_Profildicke" HorizontalAlignment="Left" Height="23" Margin="150,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Profildicke_TextChanged"/>
         <Label x:Name="lbl_Material" Content="Material" HorizontalAlignment="Left" Margin="30,240,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
         <ComboBox x:Name="cb_Material" HorizontalAlignment="Left" Margin="150,240,0,185" Width="120" >
-            <ComboBoxItem>S235 (Stahl)</ComboBoxItem>
-            <ComboBoxItem>S355 (Stahl)</ComboBoxItem>
-            <ComboBoxItem>EN AW-6060 (Aluminium)</ComboBoxItem>
-            <ComboBoxItem>EN AW-6082 (Aluminium)</ComboBoxItem>
-            <ComboBoxItem>MS63 (Messing)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected_5">S235 (Stahl)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected">S355 (Stahl)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected_1">EN AW-6060 (Aluminium)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected_2">EN AW-6082 (Aluminium)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected_3">MS63 (Messing)</ComboBoxItem>
         </ComboBox>
         <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="140,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="but_Berechnen_Click"/>
 

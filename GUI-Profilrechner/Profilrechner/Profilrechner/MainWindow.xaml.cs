@@ -80,7 +80,7 @@ namespace Profilrechner
 
     abstract class Profil:Object
     {
-        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Stegbreite, Flächeninhalt, Volumeninhalt, Masse, Profildicke;
+        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Flanschdicke, Stegdicke, Flächeninhalt, Volumeninhalt, Masse, Profildicke;
         public double Materialkf = 1;
         public int Materialint = 1;        
         public abstract double Flächenberechnung();
