@@ -30,7 +30,6 @@ namespace Profilrechner
         //Eingabefeld Breite 
         private void tb_Breite_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             string test;
             String Zeichen = "0123456789.,";
             if (tb_Breite.Text.Equals(""))
@@ -140,6 +139,7 @@ namespace Profilrechner
         {
             RP.Materialint = 5; // Messing
         }
+
     }
     abstract class SymmetrischeFLPs : Profil
     {
@@ -157,7 +157,6 @@ namespace Profilrechner
             return lkYS;
         }
     }
-        
 
     class Rechteck : SymmetrischeFLPs
     {

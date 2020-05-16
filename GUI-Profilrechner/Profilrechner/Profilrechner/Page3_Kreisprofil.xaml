@@ -11,23 +11,19 @@
     <Grid Height="450" VerticalAlignment="Top" Margin="0,0,0,0" HorizontalAlignment="Left" Width="800">
         <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="420" Margin="10,20,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBlock Text="Kreisprofil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,20,0,0" FontWeight="Bold" FontSize="20"/>
-        <Label x:Name="lbl_Breite" Content="Breite in mm" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="150,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" />
-        <Label x:Name="lbl_Hoehe" Content="Höhe in mm" HorizontalAlignment="Left" Margin="30,120,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="150,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" />
-        <Label x:Name="lbl_Laenge" Content="Länge in mm" HorizontalAlignment="Left" Margin="30,160,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="150,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
-        <Label x:Name="lab_Profildicke" Content="Profildicke" HorizontalAlignment="Left" Margin="30,200,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Profildicke" HorizontalAlignment="Left" Height="23" Margin="150,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
-        <Label x:Name="lbl_Material" Content="Material" HorizontalAlignment="Left" Margin="30,240,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <ComboBox HorizontalAlignment="Left" Margin="150,240,0,0" VerticalAlignment="Top" Width="120" Height="25">
-            <ComboBoxItem >S235 (Stahl)</ComboBoxItem>
-            <ComboBoxItem >S355 (Stahl)</ComboBoxItem>
-            <ComboBoxItem >EN AW-6060 (Aluminium)</ComboBoxItem>
-            <ComboBoxItem >EN AW-6082 (Aluminium)</ComboBoxItem>
-            <ComboBoxItem >MS63 (Messing)</ComboBoxItem>
+        <Label x:Name="lbl_durchmesser" Content="Durchmesser [D] in mm" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" Width="115" Height="25"/>
+        <TextBox x:Name="tb_Durchmesser" HorizontalAlignment="Left" Height="25" Margin="150,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Durchmesser_TextChanged_1" />
+        <Label x:Name="lbl_Länge" Content="Länge in mm" HorizontalAlignment="Left" Margin="30,120,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="150,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Laenge_TextChanged" />
+        <Label x:Name="lbl_Material" Content="Material" HorizontalAlignment="Left" Margin="30,160,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <ComboBox x:Name="cb_Material" HorizontalAlignment="Left" Margin="150,160,0,0" VerticalAlignment="Top" Width="120" Height="25">
+            <ComboBoxItem Selected="ComboBoxItem_Selected_5">S235 (Stahl)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected_3">S355 (Stahl)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected">EN AW-6060 (Aluminium)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected_1">EN AW-6082 (Aluminium)</ComboBoxItem>
+            <ComboBoxItem Selected="ComboBoxItem_Selected_2">MS63 (Messing)</ComboBoxItem>
         </ComboBox>
-        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="140,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" />
+        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="140,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="but_Berechnen_Click" />
 
         <Border BorderBrush="Black" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="160" Margin="295,280,0,0" VerticalAlignment="Top" Width="499"/>
         <Label x:Name="lbl_Querschnittsflaeche" Content="Querschnittsfläche" HorizontalAlignment="Left" Margin="320,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
@@ -46,7 +42,7 @@
         <TextBox x:Name="tb_FTMY" HorizontalAlignment="Left" Height="25" Margin="630,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center"/>
 
 
-        <Image x:Name="img_RechteckhohlDetail" HorizontalAlignment="Left" Height="237" Margin="430,20,0,0" VerticalAlignment="Top" Width="235" />
+        <Image x:Name="img_KreisprofilDetail" HorizontalAlignment="Left" Height="237" Margin="430,20,0,0" VerticalAlignment="Top" Width="235" Source="KreisDetail.jpg" />
 
     </Grid>
 </Page>

@@ -168,5 +168,11 @@
   <ItemGroup>
     <Resource Include="Stabil-Profil-Logo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="KreisDetail.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="KreishohlprofilDetail.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
