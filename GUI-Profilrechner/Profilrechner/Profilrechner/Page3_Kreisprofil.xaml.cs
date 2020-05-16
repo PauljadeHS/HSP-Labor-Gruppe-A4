@@ -20,7 +20,7 @@ namespace Profilrechner
     /// </summary>
     public partial class Page3_Kreisprofil : Page
     {
-        Profil KP;
+        Profil KP;        
         public Page3_Kreisprofil()
         {
             InitializeComponent();
@@ -45,8 +45,9 @@ namespace Profilrechner
                     else
                     {
                         tb_Durchmesser.Text = "";
-                    }
-            }          
+                    }               
+            }
+           
         }
 
         private void tb_Laenge_TextChanged(object sender, TextChangedEventArgs e)
@@ -82,7 +83,7 @@ namespace Profilrechner
             double SchwerpunktYS = KP.FlächenschwerpunktXS();
             double IXX = KP.FlächenträgheitsmomentIXX();
             double IYY = KP.FlächenträgheitsmomentIYY();
-            tb_Querschnittsflaeche.Text = Convert.ToString(Flächeninhalt / 100 + " cm^2");                  //Flächeninhalt umrechnung im cm^2
+            tb_Querschnittsflaeche.Text = Convert.ToString((String.Format("{0:0.00}", Flächeninhalt / 100)) + " cm^2");                  //Flächeninhalt umrechnung im cm^2
             tb_Volumen.Text = Convert.ToString((String.Format("{0:0.00}", Volumeninhalt / 1000000)) + " l");//Querschnittsfläche umgerechnet in dm^3
             tb_Masse.Text = Convert.ToString((String.Format("{0:0.000}", Masse / 1000) + " kg"));            //Masse in kg
             tb_Materialkosten.Text = Convert.ToString((String.Format("{0:0.00}", Materialkosten) + " €"));
@@ -137,7 +138,7 @@ namespace Profilrechner
         public override double Flächenberechnung()
         {
             double lkFlächeninhalt;
-            lkFlächeninhalt = (Math.Pow((Durchmesser / 2), 2));
+            lkFlächeninhalt = (Math.Pow((Durchmesser / 2), 2))*Math.PI;
             return lkFlächeninhalt;
         }
         public override double FlächenträgheitsmomentIXX()

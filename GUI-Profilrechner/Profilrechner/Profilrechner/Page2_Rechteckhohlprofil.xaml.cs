@@ -26,8 +26,8 @@ namespace Profilrechner
             InitializeComponent();
             RHP = new Rechteckhohl(); 
         }
-        //Eingabefeld Breite 
 
+        //Eingabefeld Breite 
         private void tb_Breite_TextChanged(object sender, TextChangedEventArgs e)
         {
             string test;
@@ -48,6 +48,7 @@ namespace Profilrechner
                     }
             }
         }
+
         //Eingabefeld Länge
         private void tb_Laenge_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -92,6 +93,7 @@ namespace Profilrechner
             }
         }
 
+        //Eingabe Profildicke
         private void tb_Profildicke_TextChanged(object sender, TextChangedEventArgs e)
         {
             string test;
