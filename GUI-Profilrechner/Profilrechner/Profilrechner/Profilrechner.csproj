@@ -180,5 +180,11 @@
   <ItemGroup>
     <Resource Include="Doppel-T-ProfilDetail.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="U-ProfilDetail.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="L-ProfilDetail.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
