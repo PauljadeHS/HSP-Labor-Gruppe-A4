@@ -181,22 +181,22 @@ namespace Profilrechner
 
         private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
         {
-            DTP.Materialint = 1; // S355 (Stahl)
+            DTP.Materialint = 2; // S355 (Stahl)
         }
 
         private void ComboBoxItem_Selected_2(object sender, RoutedEventArgs e)
         {
-            DTP.Materialint = 1; // EN AW-6060 (Aluminium)
+            DTP.Materialint = 3; // EN AW-6060 (Aluminium)
         }
 
         private void ComboBoxItem_Selected_3(object sender, RoutedEventArgs e)
         {
-            DTP.Materialint = 1; // Aluminium 2
+            DTP.Materialint = 4; // Aluminium 2
         }
 
         private void ComboBoxItem_Selected_4(object sender, RoutedEventArgs e)
         {
-            DTP.Materialint = 1; // Messing
+            DTP.Materialint = 5; // Messing
         }
         #endregion
         class DTProfil : SymmetrischeFLPs

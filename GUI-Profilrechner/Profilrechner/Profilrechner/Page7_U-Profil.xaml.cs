@@ -196,20 +196,20 @@ namespace Profilrechner
             public override double Flächenberechnung()
             {
                 double lkFlächeninhalt;
-                lkFlächeninhalt = Breite * Höhe - (Breite - Profildicke) * (Höhe - 2 * Profildicke);
+                lkFlächeninhalt = Breite * Höhe - (Breite - Stegdicke) * (Höhe - 2 * Flanschdicke);
                 return lkFlächeninhalt;
             }
             public override double FlächenträgheitsmomentIXX()
             {
                 double lkIXX;
-                lkIXX = (Breite * Math.Pow(Höhe, 3) / 12) - ((Breite - Profildicke) * Math.Pow((Höhe - 2 * Profildicke), 3) / 12);
+                lkIXX = (Breite * Math.Pow(Höhe, 3) / 12) - ((Breite - Stegdicke) * Math.Pow((Höhe - 2 * Flanschdicke), 3) / 12);
 
                 return lkIXX;
             }
             public override double FlächenträgheitsmomentIYY()
             {
                 double lkIYY;
-                lkIYY = (Höhe * Math.Pow(Breite, 3) / 12) - ((Höhe - 2 * Profildicke) * Math.Pow(Breite - Profildicke, 3) / 12);
+                lkIYY = (Höhe * Math.Pow(Breite, 3) / 12) - ((Höhe - 2 * Flanschdicke) * Math.Pow(Breite - Stegdicke, 3) / 12);
 
                 return lkIYY;
             }
@@ -228,7 +228,7 @@ namespace Profilrechner
         public override double FlächenschwerpunktYS()
         {
             double lkYS;
-            lkYS = (Höhe * Breite * Breite / 2 - (Höhe - 2 * Profildicke) * (Breite - Profildicke) * (Breite - Profildicke) / 2) / (Höhe * Breite - (Höhe - 2 * Profildicke) * (Breite - Profildicke));
+            lkYS = (Höhe * Breite * Breite / 2 - (Höhe - 2 * Flanschdicke) * (Breite - Stegdicke) * (Breite - Stegdicke) / 2) / (Höhe * Breite - (Höhe - 2 * Flanschdicke) * (Breite - Stegdicke));
             return lkYS;
         }
     }
