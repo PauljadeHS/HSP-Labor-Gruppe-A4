@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,75 +28,12 @@ namespace Profilrechner
             RP = new Rechteck();
         }
 
-        //Eingabefeld Breite 
-        private void tb_Breite_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Breite.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Breite.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        RP.Breite = Convert.ToDouble(tb_Breite.Text);
-                    }
-                    else
-                    {
-                        tb_Breite.Text = "";
-                    }
-            }
-
-        }
-
-        //Eingabefeld Länge
-        private void tb_Laenge_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Laenge.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Laenge.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        RP.Länge = Convert.ToDouble(tb_Laenge.Text);
-                    }
-                    else
-                    {
-                        tb_Laenge.Text = "";
-                    }
-            }
-        }
-        //Eingabefeld Höhe 
-        private void tb_Hoehe_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Hoehe.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Hoehe.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        RP.Höhe = Convert.ToDouble(tb_Hoehe.Text);
-                    }
-                    else
-                    {
-                        tb_Hoehe.Text = "";
-                    }
-            }
-        }
-
         //BerechnungsButton
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
+            RP.Breite = RP.ConvToNumber(tb_Breite.Text);
+            RP.Länge = RP.ConvToNumber(tb_Laenge.Text);
+            RP.Höhe = RP.ConvToNumber(tb_Hoehe.Text);
             double Flächeninhalt = RP.Flächenberechnung();
             RP.Flächeninhalt = Flächeninhalt;
             double Volumeninhalt = RP.Volumen();
@@ -113,6 +51,9 @@ namespace Profilrechner
             tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys     = " + SchwerpunktXS + " mm / " + SchwerpunktYS + " mm");
             tb_FTMX.Text = Convert.ToString("="+(String.Format(" {0:0.0}", IXX / 10000) + " cm^4"));
             tb_FTMY.Text = Convert.ToString("="+(String.Format(" {0:0.0}", IYY / 10000) + " cm^4"));
+            tb_Breite.Text = Convert.ToString(RP.Breite);
+            tb_Hoehe.Text = Convert.ToString(RP.Höhe);
+            tb_Laenge.Text = Convert.ToString(RP.Länge);
 
         }
         ///IsSelected="True"

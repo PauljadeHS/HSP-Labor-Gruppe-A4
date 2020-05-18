@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -80,16 +81,31 @@ namespace Profilrechner
 
     abstract class Profil:Object
     {
-        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Flanschdicke, Stegdicke, Flächeninhalt, Volumeninhalt, Masse, Profildicke;
+        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Flanschdicke, Stegdicke, Flächeninhalt, Volumeninhalt, Masse, Profildicke, SchwerpunktXS, SchwerpunktYS;
         public double Materialkf = 1;
         public int Materialint = 1;        
+ 
+        public double ConvToNumber(string In)
+        {
+            string Out;
+            // ungültige Zeichen entfernen
+            Out = Regex.Replace(In, "[^0123456789.,]", "",
+                                RegexOptions.None, TimeSpan.FromSeconds(1.5));
+            if(Out.Length != In.Length)
+            {
+                MessageBox.Show("Achtung! Es wurden ungültige Zeichen entfernt.", "Warnung",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+            }
+            return Convert.ToDouble(Out);
+        }
         public abstract double Flächenberechnung();
         public abstract double FlächenschwerpunktXS();
         public abstract double FlächenschwerpunktYS();
         public abstract double FlächenträgheitsmomentIXX();
         public abstract double FlächenträgheitsmomentIYY();
-        
-        public double Volumen()
+
+         public double Volumen()
         {
             double lkVolumen;
             lkVolumen = Flächeninhalt * Länge;

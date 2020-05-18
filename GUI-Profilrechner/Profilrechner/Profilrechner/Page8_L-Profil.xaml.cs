@@ -103,7 +103,7 @@ namespace Profilrechner
                 foreach (char ch in test)
                     if (Zeichen.Contains(ch.ToString()))
                     {
-                        LP.Flanschbreite = Convert.ToDouble(tb_Profildicke.Text);
+                        LP.Profildicke = Convert.ToDouble(tb_Profildicke.Text);
                     }
                     else
                     {
@@ -125,6 +125,7 @@ namespace Profilrechner
 
             else
             {
+                
                 double Flächeninhalt = LP.Flächenberechnung();
                 LP.Flächeninhalt = Flächeninhalt;
                 double Volumeninhalt = LP.Volumen();
@@ -132,7 +133,9 @@ namespace Profilrechner
                 double Masse = LP.Massenberechnung();
                 double Materialkosten = LP.Materialkosten();
                 double SchwerpunktXS = LP.FlächenschwerpunktXS();
+                LP.SchwerpunktXS = SchwerpunktXS;
                 double SchwerpunktYS = LP.FlächenschwerpunktYS();
+                LP.SchwerpunktYS = SchwerpunktYS;
                 double IXX = LP.FlächenträgheitsmomentIXX();
                 double IYY = LP.FlächenträgheitsmomentIYY();
                 tb_Querschnittsflaeche.Text = Convert.ToString((String.Format("{0:0.00}", Flächeninhalt / 100)) + " cm^2"); //Flächeninhalt umrechnung im cm^2
@@ -169,7 +172,7 @@ namespace Profilrechner
         {
             LP.Materialint = 5; // Messing
         }
-        class LProfil : SP_LProfil
+        class LProfil : Profil
         {
             public override double Flächenberechnung()
             {
@@ -180,21 +183,16 @@ namespace Profilrechner
             public override double FlächenträgheitsmomentIXX()
             {
                 double lkIXX;
-                lkIXX = ((Breite * Math.Pow(Höhe, 3)) / 3) - (((Breite - Profildicke) * Math.Pow(Höhe - Profildicke, 3)) / 3) - Flächeninhalt * Math.Pow(FlächenschwerpunktYS, 2);
+                lkIXX = ((Breite * Math.Pow(Höhe, 3)) / 3) - (((Breite - Profildicke) * Math.Pow(Höhe - Profildicke, 3)) / 3) - Flächeninhalt * Math.Pow(SchwerpunktXS, 2);
 
                 return lkIXX;
             }
             public override double FlächenträgheitsmomentIYY()
             {
                 double lkIYY;
-                lkIYY = ((Höhe * Math.Pow(Breite, 3)) / 3) - (((Höhe - Profildicke) * Math.Pow(Breite - Profildicke, 3)) / 3) - Flächeninhalt * Math.Pow(FlächenschwerpunktXS, 2);
+                lkIYY = ((Höhe * Math.Pow(Breite, 3)) / 3) - (((Höhe - Profildicke) * Math.Pow(Breite - Profildicke, 3)) / 3) - Flächeninhalt * Math.Pow(SchwerpunktXS, 2);
                 return lkIYY;
             }
-        }
-
-
-        abstract class SP_LProfil : Profil
-        {
             public override double FlächenschwerpunktXS()
             {
                 double lkXS;
