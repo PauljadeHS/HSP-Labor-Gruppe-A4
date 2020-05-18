@@ -26,53 +26,10 @@ namespace Profilrechner
             InitializeComponent();
             KP= new Kreis();            
         }
-
-        //Eingabefeld Durchmesser
-        private void tb_Durchmesser_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Durchmesser.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Durchmesser.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        KP.Durchmesser = Convert.ToDouble(tb_Durchmesser.Text);
-                    }
-                    else
-                    {
-                        tb_Durchmesser.Text = "";
-                    }               
-            }
-           
-        }
-
-        private void tb_Laenge_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Laenge.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Laenge.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        KP.Länge = Convert.ToDouble(tb_Laenge.Text);
-                    }
-                    else
-                    {
-                        tb_Laenge.Text = "";
-                    }
-            }
-        }
-
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
+            KP.Länge = KP.ConvToNumber(tb_Laenge.Text);
+            KP.Durchmesser = KP.ConvToNumber(tb_Durchmesser.Text);
             double Flächeninhalt = KP.Flächenberechnung();
             KP.Flächeninhalt = Flächeninhalt;
             double Volumeninhalt = KP.Volumen();
@@ -90,6 +47,8 @@ namespace Profilrechner
             tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys     = " + SchwerpunktXS + " mm / " + SchwerpunktYS + " mm");
             tb_FTMX.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IXX / 10000) + " cm^4"));
             tb_FTMY.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IYY / 10000) + " cm^4"));
+            tb_Laenge.Text = Convert.ToString(KP.Länge);
+            tb_Durchmesser.Text = Convert.ToString(KP.Durchmesser);
         }
       
         private void ComboBoxItem_Selected_5(object sender, RoutedEventArgs e)

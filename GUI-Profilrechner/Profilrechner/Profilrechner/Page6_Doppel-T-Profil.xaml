@@ -11,15 +11,15 @@
         <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="420" Margin="10,20,0,0" VerticalAlignment="Top" Width="280"/>
         <TextBlock Text="Rechteckhohlprofil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,20,0,0" FontWeight="Bold" FontSize="20"/>
         <Label x:Name="lbl_Breite" Content="Breite in mm" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" Width="110" Height="25"/>
-        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="150,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Breite_TextChanged"/>
+        <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="150,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Hoehe" Content="Höhe in mm" HorizontalAlignment="Left" Margin="30,120,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
-        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="150,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Hoehe_TextChanged"/>
+        <TextBox x:Name="tb_Hoehe" HorizontalAlignment="Left" Height="25" Margin="150,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Laenge" Content="Länge in mm" HorizontalAlignment="Left" Margin="30,160,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="150,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Laenge_TextChanged"/>
+        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="150,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
         <Label x:Name="lab_Stegdicke" Content="Stegdicke in mm" HorizontalAlignment="Left" Margin="30,200,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
-        <TextBox x:Name="tb_Stegdicke" HorizontalAlignment="Left" Height="23" Margin="150,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Stegdicke_TextChanged"/>
+        <TextBox x:Name="tb_Stegdicke" HorizontalAlignment="Left" Height="23" Margin="150,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" />
         <Label x:Name="lab_Flanschdicke" Content="Flanschdicke in mm" HorizontalAlignment="Left" Margin="30,240,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
-        <TextBox x:Name="tb_Flanschdicke" HorizontalAlignment="Left" Height="23" Margin="150,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Flanschdicke_TextChanged"/>
+        <TextBox x:Name="tb_Flanschdicke" HorizontalAlignment="Left" Height="23" Margin="150,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Material" Content="Material" HorizontalAlignment="Left" Margin="30,280,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
         <ComboBox x:Name="cb_Material" HorizontalAlignment="Left" Margin="150,280,0,145" Width="120" >
             <ComboBoxItem Selected="ComboBoxItem_Selected">S235 (Stahl)</ComboBoxItem>

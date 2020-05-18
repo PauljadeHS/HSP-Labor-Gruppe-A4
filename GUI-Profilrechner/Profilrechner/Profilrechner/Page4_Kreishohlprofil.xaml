@@ -15,11 +15,11 @@
         <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="420" Margin="10,20,0,0" VerticalAlignment="Top" Width="280" Grid.RowSpan="2"/>
         <TextBlock Text="Kreisprofil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,20,0,0" FontWeight="Bold" FontSize="20"/>
         <Label x:Name="lbl_durchmesser" Content="Durchmesser in mm" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" Width="115" Height="25"/>
-        <TextBox x:Name="tb_Durchmesser" HorizontalAlignment="Left" Height="25" Margin="150,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Durchmesser_TextChanged_1" />
+        <TextBox x:Name="tb_Durchmesser" HorizontalAlignment="Left" Height="25" Margin="150,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Länge" Content="Länge in mm" HorizontalAlignment="Left" Margin="30,120,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="150,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Laenge_TextChanged" />
+        <TextBox x:Name="tb_Laenge" HorizontalAlignment="Left" Height="25" Margin="150,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
         <Label x:Name="lab_Profildicke" Content="Profildicke in mm" HorizontalAlignment="Left" Margin="30,160,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
-        <TextBox x:Name="tb_Profildicke" HorizontalAlignment="Left" Height="23" Margin="150,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="tb_Profildicke_TextChanged"/>
+        <TextBox x:Name="tb_Profildicke" HorizontalAlignment="Left" Height="23" Margin="150,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Material" Content="Material" HorizontalAlignment="Left" Margin="30,200,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
         <ComboBox x:Name="cb_Material" HorizontalAlignment="Left" Margin="150,200,0,0" VerticalAlignment="Top" Width="120" Height="25">
             <ComboBoxItem Selected="ComboBoxItem_Selected">S235 (Stahl)</ComboBoxItem>

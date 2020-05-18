@@ -27,106 +27,44 @@ namespace Profilrechner
             KHP = new Kreishohl();
         }
 
-        //Eingabe Durchmesser
-        private void tb_Durchmesser_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Durchmesser.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Durchmesser.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        KHP.Durchmesser = Convert.ToDouble(tb_Durchmesser.Text);
-                    }
-                    else
-                    {
-                        tb_Durchmesser.Text = "";
-                    }
-            }
-
-        }
-
-        //Eingabe Länge
-        private void tb_Laenge_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Laenge.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Laenge.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        KHP.Länge = Convert.ToDouble(tb_Laenge.Text);
-                    }
-                    else
-                    {
-                        tb_Laenge.Text = "";
-                    }
-            }
-
-        }
-
-        //Eingabe Profildicke
-        private void tb_Profildicke_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Profildicke.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Profildicke.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        KHP.Profildicke = Convert.ToDouble(tb_Profildicke.Text);
-                    }
-                    else
-                    {
-                        tb_Profildicke.Text = "";
-                    }
-            }
-        }
-
         //Berrechnungsbutton
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
+            KHP.Durchmesser = KHP.ConvToNumber(tb_Durchmesser.Text);
+            KHP.Länge = KHP.ConvToNumber(tb_Laenge.Text);
+            KHP.Profildicke = KHP.ConvToNumber(tb_Profildicke.Text);
             if (KHP.Durchmesser / 2 <= KHP.Profildicke)
             {
+                KHP.Durchmesser = 0;
+                KHP.Länge = 0;
+                KHP.Profildicke = 0;
                 MessageBox.Show("Ungültige Eingabe: Profildiche zu groß! Eingabe wiederspricht dem aktuellen Stand des Technisch möglichen.                                                                                                    " +
                                 "                                                    " +
                                 "Tipp: If Error, change User!  ;-)", "Error",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             }
-            else
-            {
-                double Flächeninhalt = KHP.Flächenberechnung();
-                KHP.Flächeninhalt = Flächeninhalt;
-                double Volumeninhalt = KHP.Volumen();
-                KHP.Volumeninhalt = Volumeninhalt;
-                double Masse = KHP.Massenberechnung();
-                double Materialkosten = KHP.Materialkosten();
-                double SchwerpunktXS = KHP.FlächenschwerpunktXS();
-                double SchwerpunktYS = KHP.FlächenschwerpunktYS();
-                double IXX = KHP.FlächenträgheitsmomentIXX();
-                double IYY = KHP.FlächenträgheitsmomentIYY();
-                tb_Querschnittsflaeche.Text = Convert.ToString((String.Format("{0:0.00}", Flächeninhalt / 100)) + " cm^2"); //Flächeninhalt umrechnung im cm^2
-                tb_Volumen.Text = Convert.ToString((String.Format("{0:0.00}", Volumeninhalt / 1000000)) + " l");       //Querschnittsfläche umgerechnet in dm^3
-                tb_Masse.Text = Convert.ToString((String.Format("{0:0.000}", Masse / 1000) + " kg")); //Masse in kg
-                tb_Materialkosten.Text = Convert.ToString((String.Format("{0:0.00}", Materialkosten) + " €"));
-                tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys     = " + SchwerpunktXS + " mm / " + SchwerpunktYS + " mm");
-                tb_FTMX.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IXX / 10000) + " cm^4"));
-                tb_FTMY.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IYY / 10000) + " cm^4"));
-            }
-            //Plausibilitätsprüfung
+            double Flächeninhalt = KHP.Flächenberechnung();
+            KHP.Flächeninhalt = Flächeninhalt;
+            double Volumeninhalt = KHP.Volumen();
+            KHP.Volumeninhalt = Volumeninhalt;
+            double Masse = KHP.Massenberechnung();
+            double Materialkosten = KHP.Materialkosten();
+            double SchwerpunktXS = KHP.FlächenschwerpunktXS();
+            double SchwerpunktYS = KHP.FlächenschwerpunktYS();
+            double IXX = KHP.FlächenträgheitsmomentIXX();
+            double IYY = KHP.FlächenträgheitsmomentIYY();
+            tb_Querschnittsflaeche.Text = Convert.ToString((String.Format("{0:0.00}", Flächeninhalt / 100)) + " cm^2"); //Flächeninhalt umrechnung im cm^2
+            tb_Volumen.Text = Convert.ToString((String.Format("{0:0.00}", Volumeninhalt / 1000000)) + " l");       //Querschnittsfläche umgerechnet in dm^3
+            tb_Masse.Text = Convert.ToString((String.Format("{0:0.000}", Masse / 1000) + " kg")); //Masse in kg
+            tb_Materialkosten.Text = Convert.ToString((String.Format("{0:0.00}", Materialkosten) + " €"));
+            tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys     = " + SchwerpunktXS + " mm / " + SchwerpunktYS + " mm");
+            tb_FTMX.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IXX / 10000) + " cm^4"));
+            tb_FTMY.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IYY / 10000) + " cm^4"));
+            tb_Durchmesser.Text = Convert.ToString(KHP.Durchmesser);
+            tb_Laenge.Text = Convert.ToString(KHP.Länge);
+            tb_Profildicke.Text = Convert.ToString(KHP.Profildicke);
+
         }
 
         private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)

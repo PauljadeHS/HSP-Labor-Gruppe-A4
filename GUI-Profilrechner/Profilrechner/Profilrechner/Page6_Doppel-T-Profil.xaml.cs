@@ -27,150 +27,50 @@ namespace Profilrechner
             DTP = new DTProfil();
         }
 
-        private void tb_Breite_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Breite.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Breite.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        DTP.Breite = Convert.ToDouble(tb_Breite.Text);
-                    }
-                    else
-                    {
-                        tb_Breite.Text = "";
-                    }
-            }
-        }
-
-        //Eingabe Hoehe
-        private void tb_Hoehe_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            {
-                string test;
-                String Zeichen = "0123456789.,";
-                if (tb_Hoehe.Text.Equals(""))
-                { }
-                else
-                {
-                    test = tb_Hoehe.Text;
-                    foreach (char ch in test)
-                        if (Zeichen.Contains(ch.ToString()))
-                        {
-                            DTP.Höhe = Convert.ToDouble(tb_Hoehe.Text);
-                        }
-                        else
-                        {
-                            tb_Hoehe.Text = "";
-                        }
-                }
-            }
-        }
-
-        //Eingabe Laenge
-        private void tb_Laenge_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Laenge.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Laenge.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        DTP.Länge = Convert.ToDouble(tb_Laenge.Text);
-                    }
-                    else
-                    {
-                        tb_Laenge.Text = "";
-                    }
-            }
-        }
-
-        //Eingabe Stegdicke
-        private void tb_Stegdicke_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Stegdicke.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Stegdicke.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        DTP.Stegdicke = Convert.ToDouble(tb_Stegdicke.Text);
-                    }
-                    else
-                    {
-                        tb_Stegdicke.Text = "";
-                    }
-            }
-        }
-
-        //Eingabe Flanschdicke
-        private void tb_Flanschdicke_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Flanschdicke.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Stegdicke.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        DTP.Flanschdicke = Convert.ToDouble(tb_Flanschdicke.Text);
-                    }
-                    else
-                    {
-                        tb_Flanschdicke.Text = "";
-                    }
-            }
-        }
-
         //Berechnungsbutton
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
+            DTP.Breite = DTP.ConvToNumber(tb_Breite.Text);
+            DTP.Länge = DTP.ConvToNumber(tb_Laenge.Text);
+            DTP.Höhe = DTP.ConvToNumber(tb_Hoehe.Text);
+            DTP.Stegdicke = DTP.ConvToNumber(tb_Stegdicke.Text);
+            DTP.Flanschdicke = DTP.ConvToNumber(tb_Flanschdicke.Text);
+
             if (DTP.Höhe <= 2 * DTP.Flanschdicke || DTP.Breite <= DTP.Stegdicke)
             {
+                DTP.Breite = 0;
+                DTP.Länge = 0;
+                DTP.Höhe = 0;
+                DTP.Stegdicke = 0;
+                DTP.Flanschdicke = 0;
                 MessageBox.Show("Ungültige Eingabe: Profildiche zu groß! Eingabe wiederspricht dem aktuellen Stand des Technisch möglichen.                                                                                                    " +
                                 "                                                    " +
                                 "Tipp: If Error, change User!  ;-)", "Error",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             }
-
-            else
-            {
-                double Flächeninhalt = DTP.Flächenberechnung();
-                DTP.Flächeninhalt = Flächeninhalt;
-                double Volumeninhalt = DTP.Volumen();
-                DTP.Volumeninhalt = Volumeninhalt;
-                double Masse = DTP.Massenberechnung();
-                double Materialkosten = DTP.Materialkosten();
-                double SchwerpunktXS = DTP.FlächenschwerpunktXS();
-                double SchwerpunktYS = DTP.FlächenschwerpunktYS();
-                double IXX = DTP.FlächenträgheitsmomentIXX();
-                double IYY = DTP.FlächenträgheitsmomentIYY();
-                tb_Querschnittsflaeche.Text = Convert.ToString((String.Format("{0:0.00}", Flächeninhalt / 100)) + " cm^2"); //Flächeninhalt umrechnung im cm^2
-                tb_Volumen.Text = Convert.ToString((String.Format("{0:0.00}", Volumeninhalt / 1000000)) + " l");       //Querschnittsfläche umgerechnet in dm^3
-                tb_Masse.Text = Convert.ToString((String.Format("{0:0.000}", Masse / 1000) + " kg")); //Masse in kg
-                tb_Materialkosten.Text = Convert.ToString((String.Format("{0:0.00}", Materialkosten) + " €"));
-                tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys     = " + (String.Format("{0:0.00}",SchwerpunktXS)) + " mm / " + (String.Format("{0:0.00}", SchwerpunktYS)) + " mm");
-                tb_FTMX.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IXX / 10000) + " cm^4"));
-                tb_FTMY.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IYY / 10000) + " cm^4"));
-            }
-            //Plausibilitätsprüfung
+            double Flächeninhalt = DTP.Flächenberechnung();
+            DTP.Flächeninhalt = Flächeninhalt;
+            double Volumeninhalt = DTP.Volumen();
+            DTP.Volumeninhalt = Volumeninhalt;
+            double Masse = DTP.Massenberechnung();
+            double Materialkosten = DTP.Materialkosten();
+            double SchwerpunktXS = DTP.FlächenschwerpunktXS();
+            double SchwerpunktYS = DTP.FlächenschwerpunktYS();
+            double IXX = DTP.FlächenträgheitsmomentIXX();
+            double IYY = DTP.FlächenträgheitsmomentIYY();
+            tb_Querschnittsflaeche.Text = Convert.ToString((String.Format("{0:0.00}", Flächeninhalt / 100)) + " cm^2"); //Flächeninhalt umrechnung im cm^2
+            tb_Volumen.Text = Convert.ToString((String.Format("{0:0.00}", Volumeninhalt / 1000000)) + " l");       //Querschnittsfläche umgerechnet in dm^3
+            tb_Masse.Text = Convert.ToString((String.Format("{0:0.000}", Masse / 1000) + " kg")); //Masse in kg
+            tb_Materialkosten.Text = Convert.ToString((String.Format("{0:0.00}", Materialkosten) + " €"));
+            tb_Schwerpunktkoordinaten.Text = Convert.ToString("Xs/Ys     = " + (String.Format("{0:0.00}",SchwerpunktXS)) + " mm / " + (String.Format("{0:0.00}", SchwerpunktYS)) + " mm");
+            tb_FTMX.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IXX / 10000) + " cm^4"));
+            tb_FTMY.Text = Convert.ToString("=" + (String.Format(" {0:0.0}", IYY / 10000) + " cm^4"));
+            tb_Breite.Text = Convert.ToString(DTP.Breite);
+            tb_Hoehe.Text = Convert.ToString(DTP.Höhe);
+            tb_Laenge.Text = Convert.ToString(DTP.Länge);
+            tb_Stegdicke.Text = Convert.ToString(DTP.Stegdicke);
+            tb_Flanschdicke.Text = Convert.ToString(DTP.Flanschdicke);
         }
 
         #region ComboBox
