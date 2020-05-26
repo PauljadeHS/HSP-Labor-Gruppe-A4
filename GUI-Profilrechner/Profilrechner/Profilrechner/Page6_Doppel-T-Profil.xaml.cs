@@ -30,6 +30,7 @@ namespace Profilrechner
         //Berechnungsbutton
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
+            DTP.AuslesenExcel();
             DTP.Breite = DTP.ConvToNumber(tb_Breite.Text);
             DTP.Länge = DTP.ConvToNumber(tb_Laenge.Text);
             DTP.Höhe = DTP.ConvToNumber(tb_Hoehe.Text);

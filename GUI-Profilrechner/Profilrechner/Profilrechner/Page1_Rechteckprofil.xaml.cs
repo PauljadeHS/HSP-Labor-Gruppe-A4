@@ -31,6 +31,7 @@ namespace Profilrechner
         //BerechnungsButton
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
+            RP.AuslesenExcel();
             RP.Breite = RP.ConvToNumber(tb_Breite.Text);
             RP.Länge = RP.ConvToNumber(tb_Laenge.Text);
             RP.Höhe = RP.ConvToNumber(tb_Hoehe.Text);

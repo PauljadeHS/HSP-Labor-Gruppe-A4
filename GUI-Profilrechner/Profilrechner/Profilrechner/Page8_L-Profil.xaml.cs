@@ -28,92 +28,13 @@ namespace Profilrechner
             LP = new LProfil();
         }
 
-        private void tb_Breite_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Breite.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Breite.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        LP.Breite = Convert.ToDouble(tb_Breite.Text);
-                    }
-                    else
-                    {
-                        tb_Breite.Text = "";
-                    }
-            }
-        }
-
-        private void tb_Hoehe_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Hoehe.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Hoehe.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        LP.Höhe = Convert.ToDouble(tb_Hoehe.Text);
-                    }
-                    else
-                    {
-                        tb_Hoehe.Text = "";
-                    }
-            }
-        }
-
-        private void tb_Laenge_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Laenge.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Laenge.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        LP.Länge = Convert.ToDouble(tb_Laenge.Text);
-                    }
-                    else
-                    {
-                        tb_Laenge.Text = "";
-                    }
-            }
-        }
-
-        private void tb_Profildicke_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string test;
-            String Zeichen = "0123456789.,";
-            if (tb_Profildicke.Text.Equals(""))
-            { }
-            else
-            {
-                test = tb_Profildicke.Text;
-                foreach (char ch in test)
-                    if (Zeichen.Contains(ch.ToString()))
-                    {
-                        LP.Profildicke = Convert.ToDouble(tb_Profildicke.Text);
-                    }
-                    else
-                    {
-                        tb_Profildicke.Text = "";
-                    }
-            }
-        }
-
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
+            LP.AuslesenExcel();
+            LP.Breite = LP.ConvToNumber(tb_Breite.Text);
+            LP.Länge = LP.ConvToNumber(tb_Laenge.Text);
+            LP.Höhe = LP.ConvToNumber(tb_Hoehe.Text);
+            LP.Profildicke = LP.ConvToNumber(tb_Profildicke.Text);
             if (LP.Höhe <= LP.Profildicke || LP.Breite <= LP.Profildicke)
             {
                 MessageBox.Show("Ungültige Eingabe: Profildiche zu groß! Eingabe wiederspricht dem aktuellen Stand des Technisch möglichen.                                                                                                    " +
@@ -125,7 +46,6 @@ namespace Profilrechner
 
             else
             {
-                
                 double Flächeninhalt = LP.Flächenberechnung();
                 LP.Flächeninhalt = Flächeninhalt;
                 double Volumeninhalt = LP.Volumen();

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,13 +15,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Office.Interop.Excel;
 
 namespace Profilrechner
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow 
     {
         
         public MainWindow()
@@ -81,9 +84,15 @@ namespace Profilrechner
 
     abstract class Profil:Object
     {
-        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Flanschdicke, Stegdicke, Flächeninhalt, Volumeninhalt, Masse, Profildicke, SchwerpunktXS, SchwerpunktYS;
-        public double Materialkf = 1;
-        public int Materialint = 1;        
+        // Eingabevariabeln 
+        public double Breite, Höhe, Durchmesser, Länge, Flanschbreite, Flanschdicke, Stegdicke;
+
+        //Berechnungsergebnisse
+        public double Flächeninhalt, Volumeninhalt, Masse, Profildicke, SchwerpunktXS, SchwerpunktYS;
+        
+        //Variabeln zur Massenberechnung /Excel  
+        public int Materialint = 1;
+        public double S235, S355, AW6060, AW6082, MS63, Materialk;
  
         public double ConvToNumber(string In)
         {
@@ -106,40 +115,81 @@ namespace Profilrechner
         public abstract double FlächenträgheitsmomentIYY();
 
          public double Volumen()
-        {
+         {
             double lkVolumen;
             lkVolumen = Flächeninhalt * Länge;
             return lkVolumen;
+         }
+
+        public void AuslesenExcel()
+        {
+            string path = "Preisliste.xlsx";
+            FileInfo fi = new FileInfo(Assembly.GetEntryAssembly().Location);
+            path = fi.DirectoryName + "\\" + path;
+
+
+            Microsoft.Office.Interop.Excel.Application ex = new Microsoft.Office.Interop.Excel.Application();
+
+            Workbook wb;
+            Worksheet excelSheet;
+            try
+            {
+                wb = ex.Workbooks.Open(path);
+                excelSheet = wb.ActiveSheet;
+            }
+            catch
+            {
+                // Fehlermeldung Einlesung der Exel Tabelle fehlgeschlagen 
+                MessageBox.Show("Achtung! Preisliste konnte nicht eingelesen werden", "Fehler",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                S235 = Convert.ToDouble(excelSheet.Cells[ 2, 3].Value.ToString());
+                S355 = Convert.ToDouble(excelSheet.Cells[ 3, 3].Value.ToString());
+                AW6060 = Convert.ToDouble(excelSheet.Cells[ 4, 3].Value.ToString());
+                AW6082 = Convert.ToDouble(excelSheet.Cells[ 5, 3].Value.ToString());
+                MS63 = Convert.ToDouble(excelSheet.Cells[ 6, 3].Value.ToString());
+            }
+            catch (System.FormatException)
+            {
+
+            }
+            wb.Close(false);
         }
+        
 
         public double Massenberechnung()
         {
             double Dichte = 0;
-            
+
             if (Materialint == 1) //S235
             {
                 Dichte = 0.00785;
-                Materialkf = 1;
+                Materialk = S235;
             }
             else if (Materialint == 2) //S355
             {
                 Dichte = 0.00785;
-                Materialkf = 1.1;
+                Materialk = S355;
             }
             else if (Materialint == 3) //AW6060
             {
                 Dichte = 0.0027;
-                Materialkf = 3;
+                Materialk = AW6060; 
             }
             else if (Materialint == 4)  //AW6082
             {
                 Dichte = 0.0027;
-                Materialkf = 3.2;
+                Materialk = AW6082;
             }
             else if (Materialint == 5) //MS63
             {
                 Dichte = 0.00873;
-                Materialkf = 8;
+                Materialk = MS63;
             }
             double masse = Volumeninhalt * Dichte;
             Masse = masse;
@@ -149,8 +199,8 @@ namespace Profilrechner
         public double Materialkosten()
         {
             double Kosten;
-            double Grundpreis = 0.0005;//€/g    //500€/Tonne
-            Kosten = Masse * Grundpreis* Materialkf;
+            Kosten = Masse * Materialk;
+            
             return Kosten;
                 
         }

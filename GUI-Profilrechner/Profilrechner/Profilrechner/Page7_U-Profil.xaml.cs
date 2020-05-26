@@ -29,6 +29,7 @@ namespace Profilrechner
 
         private void but_Berechnen_Click(object sender, RoutedEventArgs e)
         {
+            UP.AuslesenExcel();
             UP.Breite = UP.ConvToNumber(tb_Breite.Text);
             UP.Länge = UP.ConvToNumber(tb_Laenge.Text);
             UP.Höhe = UP.ConvToNumber(tb_Hoehe.Text);
