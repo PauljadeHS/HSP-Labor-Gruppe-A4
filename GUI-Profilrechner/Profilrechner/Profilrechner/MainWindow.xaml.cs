@@ -124,9 +124,12 @@ namespace Profilrechner
         public void AuslesenExcel()
         {
             string path = "Preisliste.xlsx";
-            FileInfo fi = new FileInfo(Assembly.GetEntryAssembly().Location);
-            path = fi.DirectoryName + "\\" + path;
+            //FileInfo fi = new FileInfo(Assembly.GetEntryAssembly().Location);
+            //path = fi.DirectoryName + "\\" + path;
+            path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" + path;
+            
 
+            //c: \\Users\PPF20\\OneDrive\\DateinAktuell\\Uni\\HSP\\HSP - Labor - Gruppe - A4\\GUI - Profilrechner\\Profilrechner\\Profilrechner\\Preisliste.xlsx"
 
             Microsoft.Office.Interop.Excel.Application ex = new Microsoft.Office.Interop.Excel.Application();
 
