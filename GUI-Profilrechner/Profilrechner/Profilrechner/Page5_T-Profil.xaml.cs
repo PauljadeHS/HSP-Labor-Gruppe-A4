@@ -141,5 +141,6 @@ namespace Profilrechner
             lkYS = ((Breite * Flanschdicke * (Höhe - Flanschdicke / 2)) + (Höhe-Flanschdicke*Stegdicke*(Höhe-Flanschdicke)/2))/ (Breite * Flanschdicke + (Höhe - Flanschdicke) * Stegdicke);
             return lkYS;
         }
+        
     }
 }

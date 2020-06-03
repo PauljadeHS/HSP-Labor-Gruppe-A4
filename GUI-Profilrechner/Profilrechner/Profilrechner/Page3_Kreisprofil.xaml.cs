@@ -93,7 +93,7 @@ namespace Profilrechner
         }
     }
     class Kreis : Kreisprofile
-    {   
+    {
         public override double Flächenberechnung()
         {
             double lkFlächeninhalt;
@@ -113,5 +113,6 @@ namespace Profilrechner
 
             return lkIYY;
         }
+        
     }
 }

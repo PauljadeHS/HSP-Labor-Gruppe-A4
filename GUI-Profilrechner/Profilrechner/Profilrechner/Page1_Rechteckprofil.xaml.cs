@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using INFITF;
+using MECMOD;
+using PARTITF;
 
 namespace Profilrechner
 {
@@ -82,6 +85,42 @@ namespace Profilrechner
             RP.Materialint = 5; // Messing
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RP.Breite = RP.ConvToNumber(tb_Breite.Text);
+            RP.Länge = RP.ConvToNumber(tb_Laenge.Text);
+            RP.Höhe = RP.ConvToNumber(tb_Hoehe.Text);
+            try
+            {
+                CatiaRechteck cc = new CatiaRechteck();
+
+                // Finde Catia Prozess
+                if (cc.CATIALaeuft())
+                {
+                    // Öffne ein neues Part
+                    cc.ErzeugePart();
+                    
+                    // Erstelle eine Skizze
+                    cc.ErstelleLeereSkizze();
+                   
+                    // Generiere ein Profil
+                    cc.ErzeugeProfil(RP.Breite, RP.Höhe,0);
+                    
+                    // Extrudiere Balken
+                    cc.ErzeugeBalken(RP.Länge);
+                    
+                }
+                else
+                {
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception aufgetreten");
+            }
+            
+        }
     }
     abstract class SymmetrischeFLPs : Profil
     {
@@ -121,6 +160,49 @@ namespace Profilrechner
             lkIYY = (Math.Pow(Breite, 3) * Höhe) / 12;
 
             return lkIYY;
+        }
+    }
+    class CatiaRechteck: CatiaConnection
+    { 
+        public override void ErzeugeProfil(Double b, Double h, Double p)
+        {
+            // Skizze umbenennen
+            hsp_catiaProfil.set_Name("Rechteck");
+
+            // Rechteck in Skizze einzeichnen
+            // Skizze oeffnen
+            Factory2D catFactory2D1 = hsp_catiaProfil.OpenEdition();
+
+            // Rechteck erzeugen
+
+            // erst die Punkte
+            Point2D catPoint2D1 = catFactory2D1.CreatePoint(0, 0);
+            Point2D catPoint2D2 = catFactory2D1.CreatePoint(0, h);
+            Point2D catPoint2D3 = catFactory2D1.CreatePoint(b, h);
+            Point2D catPoint2D4 = catFactory2D1.CreatePoint(b, 0);
+
+            // dann die Linien
+            Line2D catLine2D1 = catFactory2D1.CreateLine(0, 0, 0, h);
+            catLine2D1.StartPoint = catPoint2D1;
+            catLine2D1.EndPoint = catPoint2D2;
+
+            Line2D catLine2D2 = catFactory2D1.CreateLine(0, h, b, h);
+            catLine2D2.StartPoint = catPoint2D2;
+            catLine2D2.EndPoint = catPoint2D3;
+
+            Line2D catLine2D3 = catFactory2D1.CreateLine(b, h, b, 0);
+            catLine2D3.StartPoint = catPoint2D3;
+            catLine2D3.EndPoint = catPoint2D4;
+
+            Line2D catLine2D4 = catFactory2D1.CreateLine(b, 0, 0, 0);
+            catLine2D4.StartPoint = catPoint2D4;
+            catLine2D4.EndPoint = catPoint2D1;
+
+
+            // Skizzierer verlassen
+            hsp_catiaProfil.CloseEdition();
+            // Part aktualisieren
+            hsp_catiaPart.Part.Update();
         }
     }
 }
