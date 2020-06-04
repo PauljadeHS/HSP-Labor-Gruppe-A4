@@ -99,17 +99,27 @@ namespace Profilrechner
 
         public double ConvToNumber(string In)
         {
-            string Out;
-            // ungültige Zeichen entfernen
-            Out = Regex.Replace(In, "[^0123456789.,]", "",
-                                RegexOptions.None, TimeSpan.FromSeconds(1.5));
-            if (Out.Length != In.Length)
+            try
             {
-                MessageBox.Show("Achtung! Es wurden ungültige Zeichen entfernt.", "Warnung",
-                MessageBoxButton.OK,
-                MessageBoxImage.Warning);
+                string Out;
+                // ungültige Zeichen entfernen
+                Out = Regex.Replace(In, "[^0123456789.,]", "",
+                                    RegexOptions.None, TimeSpan.FromSeconds(1.5));
+                if (Out.Length != In.Length)
+                {
+                    MessageBox.Show("Achtung! Es wurden ungültige Zeichen entfernt.", "Warnung",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                }
+                return Convert.ToDouble(Out);
             }
-            return Convert.ToDouble(Out);
+            catch
+            {
+               MessageBox.Show("Sie haben nicht überall einen Wert eingegeben, an diese Stellen haben wir 0 eingesetzt!", "Warnung",
+               MessageBoxButton.OK,
+               MessageBoxImage.Warning);
+               return Convert.ToDouble(0);
+            }
         }
         public abstract double Flächenberechnung();
         public abstract double FlächenschwerpunktXS();
@@ -151,7 +161,6 @@ namespace Profilrechner
                 MessageBoxImage.Warning);
                 return;
             }
-
             try
             {
                 S235 = Convert.ToDouble(excelSheet.Cells[2, 3].Value.ToString());
@@ -166,7 +175,6 @@ namespace Profilrechner
             }
             wb.Close(false);
         }
-
 
         public double Massenberechnung()
         {

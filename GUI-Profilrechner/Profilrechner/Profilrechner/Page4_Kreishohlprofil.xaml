@@ -28,7 +28,8 @@
             <ComboBoxItem Selected="ComboBoxItem_Selected_3">EN AW-6082 (Aluminium)</ComboBoxItem>
             <ComboBoxItem Selected="ComboBoxItem_Selected_4">MS63 (Messing)</ComboBoxItem>
         </ComboBox>
-        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="140,63,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="but_Berechnen_Click" Grid.Row="1" />
+        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="150,63,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="but_Berechnen_Click" Grid.Row="1" />
+        <Button Content="Catia" HorizontalAlignment="Left" Margin="20,63.6,0,19.6" Width="120" FontSize="18" FontWeight="Bold" RenderTransformOrigin="0.812,-1.318" Grid.Row="1" Click="Button_Click_1"/>
 
         <Border BorderBrush="Black" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="160" Margin="295,280,0,0" VerticalAlignment="Top" Width="499" Grid.RowSpan="2"/>
         <Label x:Name="lbl_Querschnittsflaeche" Content="Querschnittsfläche" HorizontalAlignment="Left" Margin="320,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
@@ -46,8 +47,8 @@
         <Label x:Name="lbl_FTMY" Content="FTM Y" HorizontalAlignment="Left" Margin="580,63,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <TextBox x:Name="tb_FTMY" HorizontalAlignment="Left" Height="25" Margin="630,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center" Grid.Row="1"/>
 
-
         <Image x:Name="img_KreishohlDetail" HorizontalAlignment="Left" Height="237" Margin="430,20,0,0" VerticalAlignment="Top" Width="235" Source="KreishohlprofilDetail.jpg" />
+
 
     </Grid>
 </Page>

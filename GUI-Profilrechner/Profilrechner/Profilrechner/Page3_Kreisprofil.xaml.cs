@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using INFITF;
+using MECMOD;
+using PARTITF;
 
 namespace Profilrechner
 {
@@ -75,6 +78,45 @@ namespace Profilrechner
         {
             KP.Materialint = 5; // Messing
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            KP.Breite = KP.ConvToNumber(tb_Durchmesser.Text);
+            KP.Länge = KP.ConvToNumber(tb_Laenge.Text);
+            
+            try
+            {
+                CatiaKreis cc = new CatiaKreis();
+
+                // Finde Catia Prozess
+                if (cc.CATIALaeuft())
+                {
+                    // Öffne ein neues Part
+                    cc.ErzeugePart();
+
+                    // Erstelle eine Skizze
+                    cc.ErstelleLeereSkizze();
+
+                    // Generiere ein Profil
+                    cc.ErzeugeProfil(KP.Breite, 0, 0);
+
+                    // Extrudiere Balken
+                    cc.ErzeugeBalken(KP.Länge);
+                }
+                else
+                {
+                    MessageBox.Show("Catia läuft nicht! Bitte starten Sie Catia V5 bevor Sie eine Skizze generieren", "Catia",
+                    MessageBoxButton.OK,
+                     MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception aufgetreten");
+            }
+
+        }
     }
     abstract class Kreisprofile : Profil
     {
@@ -114,5 +156,24 @@ namespace Profilrechner
             return lkIYY;
         }
         
+    }
+    class CatiaKreis : CatiaConnection
+    {
+        public override void ErzeugeProfil(Double d, Double h, Double p)
+        {
+            // Skizze umbenennen
+            hsp_catiaProfil.set_Name("Kreisprofil");
+
+           // Skizze oeffnen
+            Factory2D catFactory2D1 = hsp_catiaProfil.OpenEdition();
+
+           //Kreis erzeugen 
+            catFactory2D1.CreateClosedCircle(0.000000, 0.000000, d/2);
+          
+            // Skizzierer verlassen
+            hsp_catiaProfil.CloseEdition();
+            // Part aktualisieren
+            hsp_catiaPart.Part.Update();
+        }
     }
 }

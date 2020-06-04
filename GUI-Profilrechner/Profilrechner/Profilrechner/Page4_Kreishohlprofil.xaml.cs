@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using INFITF;
+using MECMOD;
+using PARTITF;
 
 namespace Profilrechner
 {
@@ -90,7 +93,46 @@ namespace Profilrechner
         private void ComboBoxItem_Selected_4(object sender, RoutedEventArgs e)
         {
             KHP.Materialint = 5; // Messing
-        }       
+        }
+       
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            KHP.Durchmesser = KHP.ConvToNumber(tb_Durchmesser.Text);
+            KHP.Länge = KHP.ConvToNumber(tb_Laenge.Text);
+            KHP.Profildicke = KHP.ConvToNumber(tb_Profildicke.Text);
+
+            try
+            {
+                CatiaKreishohl cc = new CatiaKreishohl();
+
+                // Finde Catia Prozess
+                if (cc.CATIALaeuft())
+                {
+                    // Öffne ein neues Part
+                    cc.ErzeugePart();
+
+                    // Erstelle eine Skizze
+                    cc.ErstelleLeereSkizze();
+
+                    // Generiere ein Profil
+                    cc.ErzeugeProfil(KHP.Durchmesser, KHP.Durchmesser - KHP.Profildicke, 0);
+
+                    // Extrudiere Balken
+                    cc.ErzeugeBalken(KHP.Länge);
+
+                }
+                else
+                {
+                    MessageBox.Show("Catia läuft nicht! Bitte starten Sie Catia V5 bevor Sie eine Skizze generieren", "Catia",
+                    MessageBoxButton.OK,
+                     MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception aufgetreten");
+            }
+        }
     }
     class Kreishohl : Kreisprofile
     {
@@ -114,5 +156,25 @@ namespace Profilrechner
             return lkIYY;
         }
        
+    }
+    class CatiaKreishohl : CatiaConnection
+    {
+        public override void ErzeugeProfil(Double D, Double d, Double p)
+        {
+            // Skizze umbenennen
+            hsp_catiaProfil.set_Name("Kreishohlprofil");
+
+            // Skizze oeffnen
+            Factory2D catFactory2D1 = hsp_catiaProfil.OpenEdition();
+
+            //Kreise erzeugen 
+            catFactory2D1.CreateClosedCircle(0.000000, 0.000000, D / 2);
+            catFactory2D1.CreateClosedCircle(0.000000, 0.000000, d / 2);
+
+            // Skizzierer verlassen
+            hsp_catiaProfil.CloseEdition();
+            // Part aktualisieren
+            hsp_catiaPart.Part.Update();
+        }
     }
 }

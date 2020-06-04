@@ -112,7 +112,9 @@ namespace Profilrechner
                 }
                 else
                 {
-                   
+                    MessageBox.Show("Catia läuft nicht! Bitte starten Sie Catia V5 bevor Sie eine Skizze generieren", "Catia",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
