@@ -47,6 +47,6 @@
 
 
         <Image x:Name="img_RechteckhohlDetail" HorizontalAlignment="Left" Height="237" Margin="430,20,0,0" VerticalAlignment="Top" Width="235" Source="RechteckhohlprofilDetail.jpg"/>
-        <Button Content="Catia" HorizontalAlignment="Left" Margin="20,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button  x:Name="but_Catia" Content="Catia" HorizontalAlignment="Left" Margin="20,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Page>

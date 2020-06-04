@@ -9,7 +9,7 @@
       Title="Page6_Doppel_T_Profil">
     <Grid Height="450" VerticalAlignment="Top" Margin="0,0,0,0" HorizontalAlignment="Left" Width="800">
         <Border BorderBrush="Black" BorderThickness="1,0" HorizontalAlignment="Left" Height="420" Margin="10,20,0,0" VerticalAlignment="Top" Width="280"/>
-        <TextBlock Text="Rechteckhohlprofil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,20,0,0" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Text="Doppel T-Profil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,20,0,0" FontWeight="Bold" FontSize="20"/>
         <Label x:Name="lbl_Breite" Content="Breite in mm" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" Width="110" Height="25"/>
         <TextBox x:Name="tb_Breite" HorizontalAlignment="Left" Height="25" Margin="150,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
         <Label x:Name="lbl_Hoehe" Content="Höhe in mm" HorizontalAlignment="Left" Margin="30,120,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
@@ -28,7 +28,7 @@
             <ComboBoxItem Selected="ComboBoxItem_Selected_3">EN AW-6082 (Aluminium)</ComboBoxItem>
             <ComboBoxItem Selected="ComboBoxItem_Selected_4">MS63 (Messing)</ComboBoxItem>
         </ComboBox>
-        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="140,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="but_Berechnen_Click"/>
+        <Button x:Name="but_Berechnen" Content="Berechnen" HorizontalAlignment="Left" Margin="150,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="but_Berechnen_Click"/>
 
         <Border BorderBrush="Black" BorderThickness="0,1,0,0" HorizontalAlignment="Left" Height="160" Margin="295,280,0,0" VerticalAlignment="Top" Width="499"/>
         <Label x:Name="lbl_Querschnittsflaeche" Content="Querschnittsfläche" HorizontalAlignment="Left" Margin="320,300,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
@@ -46,7 +46,7 @@
         <Label x:Name="lbl_FTMY" Content="FTM Y" HorizontalAlignment="Left" Margin="580,390,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tb_FTMY" HorizontalAlignment="Left" Height="25" Margin="630,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center"/>
 
-
+        <Button x:Name="but_Catia" Content="Catia" HorizontalAlignment="Left" Margin="20,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top"/>
         <Image x:Name="img_T_ProfilDetail" HorizontalAlignment="Left" Height="237" Margin="430,20,0,0" VerticalAlignment="Top" Width="235" Source="Doppel-T-ProfilDetail.jpg"/>
 
     </Grid>  
