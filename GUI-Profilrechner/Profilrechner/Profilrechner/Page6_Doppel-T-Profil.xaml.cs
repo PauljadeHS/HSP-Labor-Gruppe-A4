@@ -136,7 +136,7 @@ namespace Profilrechner
             DTP.Flanschdicke = DTP.ConvToNumber(tb_Flanschdicke.Text);
             try
             {
-                CatiaUProfil cc = new CatiaUProfil();
+                CatiaDoppelTProfil cc = new CatiaDoppelTProfil();
 
                 // Finde Catia Prozess
                 if (cc.CATIALaeuft())

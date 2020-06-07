@@ -46,7 +46,7 @@
         <Label x:Name="lbl_FTMY" Content="FTM Y" HorizontalAlignment="Left" Margin="580,390,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tb_FTMY" HorizontalAlignment="Left" Height="25" Margin="630,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0" VerticalContentAlignment="Center"/>
 
-        <Button x:Name="but_Catia" Content="Catia" HorizontalAlignment="Left" Margin="20,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top"/>
+        <Button x:Name="but_Catia" Content="Catia" HorizontalAlignment="Left" Margin="20,390,0,0" Width="120" FontSize="18" FontWeight="Bold" Height="40" VerticalAlignment="Top" Click="but_Catia_Click"/>
         <Image x:Name="img_T_ProfilDetail" HorizontalAlignment="Left" Height="237" Margin="430,20,0,0" VerticalAlignment="Top" Width="235" Source="Doppel-T-ProfilDetail.jpg"/>
 
     </Grid>  
