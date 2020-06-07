@@ -228,20 +228,20 @@ namespace Profilrechner
             catLine2D8.EndPoint = catPoint2D9;
 
             Line2D catLine2D9 = catFactory2D1.CreateLine(0, h - f, b / 2 - s / 2, h - f);
-            catLine2D8.StartPoint = catPoint2D9;
-            catLine2D8.EndPoint = catPoint2D10;
+            catLine2D9.StartPoint = catPoint2D9;
+            catLine2D9.EndPoint = catPoint2D10;
 
             Line2D catLine2D10 = catFactory2D1.CreateLine(b / 2 - s / 2, h - f, b / 2 - s / 2, f);
-            catLine2D8.StartPoint = catPoint2D10;
-            catLine2D8.EndPoint = catPoint2D11;
+            catLine2D10.StartPoint = catPoint2D10;
+            catLine2D10.EndPoint = catPoint2D11;
 
             Line2D catLine2D11 = catFactory2D1.CreateLine(b / 2 - s / 2, f, 0, f);
-            catLine2D8.StartPoint = catPoint2D11;
-            catLine2D8.EndPoint = catPoint2D12;
+            catLine2D11.StartPoint = catPoint2D11;
+            catLine2D11.EndPoint = catPoint2D12;
 
             Line2D catLine2D12 = catFactory2D1.CreateLine(0, f, 0, 0);
-            catLine2D8.StartPoint = catPoint2D12;
-            catLine2D8.EndPoint = catPoint2D1;
+            catLine2D12.StartPoint = catPoint2D12;
+            catLine2D12.EndPoint = catPoint2D1;
 
 
             // Skizzierer verlassen
