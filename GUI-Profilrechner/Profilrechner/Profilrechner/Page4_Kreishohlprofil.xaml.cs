@@ -115,7 +115,7 @@ namespace Profilrechner
                     cc.ErstelleLeereSkizze();
 
                     // Generiere ein Profil
-                    cc.ErzeugeProfil(KHP.Durchmesser, KHP.Durchmesser - KHP.Profildicke, 0);
+                    cc.ErzeugeProfil(KHP.Durchmesser, KHP.Durchmesser - KHP.Profildicke, 0, 0);
 
                     // Extrudiere Balken
                     cc.ErzeugeBalken(KHP.Länge);
@@ -159,7 +159,7 @@ namespace Profilrechner
     }
     class CatiaKreishohl : CatiaConnection
     {
-        public override void ErzeugeProfil(Double D, Double d, Double p)
+        public override void ErzeugeProfil(Double D, Double d, Double p, Double q)
         {
             // Skizze umbenennen
             hsp_catiaProfil.set_Name("Kreishohlprofil");

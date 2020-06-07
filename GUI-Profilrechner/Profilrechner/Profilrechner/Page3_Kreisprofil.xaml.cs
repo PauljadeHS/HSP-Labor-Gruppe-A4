@@ -99,7 +99,7 @@ namespace Profilrechner
                     cc.ErstelleLeereSkizze();
 
                     // Generiere ein Profil
-                    cc.ErzeugeProfil(KP.Breite, 0, 0);
+                    cc.ErzeugeProfil(KP.Breite, 0, 0, 0);
 
                     // Extrudiere Balken
                     cc.ErzeugeBalken(KP.Länge);
@@ -159,7 +159,7 @@ namespace Profilrechner
     }
     class CatiaKreis : CatiaConnection
     {
-        public override void ErzeugeProfil(Double d, Double h, Double p)
+        public override void ErzeugeProfil(Double d, Double h, Double p, Double q)
         {
             // Skizze umbenennen
             hsp_catiaProfil.set_Name("Kreisprofil");

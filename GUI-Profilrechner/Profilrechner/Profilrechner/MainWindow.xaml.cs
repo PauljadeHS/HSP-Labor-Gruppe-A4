@@ -286,7 +286,7 @@ namespace Profilrechner
             hsp_catiaProfil.SetAbsoluteAxisData(arr);
         }
 
-        public abstract void ErzeugeProfil(Double b, Double h, Double p);
+        public abstract void ErzeugeProfil(Double b, Double h, Double p, Double q);
         public void ErzeugeBalken(Double l)
         {
             // Hauptkoerper in Bearbeitung definieren

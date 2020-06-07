@@ -127,7 +127,7 @@ namespace Profilrechner
 
         class CatiaRechteckhohl : CatiaConnection
         {
-            public override void ErzeugeProfil(Double b, Double h, Double p)
+            public override void ErzeugeProfil(Double b, Double h, Double p, Double q)
             {
                 // Skizze umbenennen
                 hsp_catiaProfil.set_Name("Rechteckhohl");
@@ -212,7 +212,7 @@ namespace Profilrechner
                     cc.ErstelleLeereSkizze();
 
                     // Generiere ein Profil
-                    cc.ErzeugeProfil(RHP.Breite, RHP.Höhe, RHP.Flanschbreite);
+                    cc.ErzeugeProfil(RHP.Breite, RHP.Höhe, RHP.Flanschbreite,0 );
 
                     // Extrudiere Balken
                     cc.ErzeugeBalken(RHP.Länge);

@@ -104,7 +104,7 @@ namespace Profilrechner
                     cc.ErstelleLeereSkizze();
                    
                     // Generiere ein Profil
-                    cc.ErzeugeProfil(RP.Breite, RP.Höhe,0);
+                    cc.ErzeugeProfil(RP.Breite, RP.Höhe,0,0);
                     
                     // Extrudiere Balken
                     cc.ErzeugeBalken(RP.Länge);
@@ -166,7 +166,7 @@ namespace Profilrechner
     }
     class CatiaRechteck: CatiaConnection
     { 
-        public override void ErzeugeProfil(Double b, Double h, Double p)
+        public override void ErzeugeProfil(Double b, Double h, Double p, Double q)
         {
             // Skizze umbenennen
             hsp_catiaProfil.set_Name("Rechteck");
