@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using INFITF;
+using MECMOD;
+using PARTITF;
 
 namespace Profilrechner
 {
@@ -125,6 +128,47 @@ namespace Profilrechner
                 return lkIYY;
             }
         }
+
+        private void but_Catia_Click(object sender, RoutedEventArgs e)
+        {
+            TP.Breite = TP.ConvToNumber(tb_Breite.Text);
+            TP.Länge = TP.ConvToNumber(tb_Laenge.Text);
+            TP.Höhe = TP.ConvToNumber(tb_Hoehe.Text);
+            TP.Stegdicke = TP.ConvToNumber(tb_Stegdicke.Text);
+            TP.Flanschdicke = TP.ConvToNumber(tb_Flanschdicke.Text);
+            try
+            {
+                CatiaUProfil cc = new CatiaUProfil();
+
+                // Finde Catia Prozess
+                if (cc.CATIALaeuft())
+                {
+                    // Öffne ein neues Part
+                    cc.ErzeugePart();
+
+                    // Erstelle eine Skizze
+                    cc.ErstelleLeereSkizze();
+
+                    // Generiere ein Profil
+                    cc.ErzeugeProfil(TP.Breite, TP.Höhe, TP.Stegdicke, TP.Flanschdicke);
+
+                    // Extrudiere Balken
+                    cc.ErzeugeBalken(TP.Länge);
+
+                }
+                else
+                {
+                    MessageBox.Show("Catia läuft nicht! Bitte starten Sie Catia V5 bevor Sie eine Skizze generieren", "Catia",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception aufgetreten");
+            }
+
+        }
     }
     abstract class SP_TProfil : Profil
     {
@@ -142,5 +186,68 @@ namespace Profilrechner
             return lkYS;
         }
         
+    }
+    class CatiaTProfil : CatiaConnection
+    {
+        public override void ErzeugeProfil(Double b, Double h, Double s, Double f)
+        {
+            // Skizze umbenennen
+            hsp_catiaProfil.set_Name("T-Profil");
+
+            // Rechteck in Skizze einzeichnen
+            // Skizze oeffnen
+            Factory2D catFactory2D1 = hsp_catiaProfil.OpenEdition();
+
+            // Rechteck erzeugen
+
+            // erst die Punkte
+            Point2D catPoint2D1 = catFactory2D1.CreatePoint(0, 0);
+            Point2D catPoint2D2 = catFactory2D1.CreatePoint(b, 0);
+            Point2D catPoint2D3 = catFactory2D1.CreatePoint(b,f);
+            Point2D catPoint2D4 = catFactory2D1.CreatePoint(b/2 +s/2,f);
+            Point2D catPoint2D5 = catFactory2D1.CreatePoint(b / 2 + s / 2, h);
+            Point2D catPoint2D6 = catFactory2D1.CreatePoint(b / 2 - s / 2, h);
+            Point2D catPoint2D7 = catFactory2D1.CreatePoint(b / 2 - s / 2, f);
+            Point2D catPoint2D8 = catFactory2D1.CreatePoint(0,f);
+
+            // dann die Linien
+            Line2D catLine2D1 = catFactory2D1.CreateLine(0, 0, b, 0);
+            catLine2D1.StartPoint = catPoint2D1;
+            catLine2D1.EndPoint = catPoint2D2;
+
+            Line2D catLine2D2 = catFactory2D1.CreateLine(b, 0, b, f);
+            catLine2D2.StartPoint = catPoint2D2;
+            catLine2D2.EndPoint = catPoint2D3;
+
+            Line2D catLine2D3 = catFactory2D1.CreateLine(b, f, b / 2 + s / 2, f);
+            catLine2D3.StartPoint = catPoint2D3;
+            catLine2D3.EndPoint = catPoint2D4;
+
+            Line2D catLine2D4 = catFactory2D1.CreateLine(b / 2 + s / 2, f, b / 2 + s / 2, h);
+            catLine2D4.StartPoint = catPoint2D4;
+            catLine2D4.EndPoint = catPoint2D5;
+
+            Line2D catLine2D5 = catFactory2D1.CreateLine(b / 2 + s / 2, h, b / 2 - s / 2, h);
+            catLine2D5.StartPoint = catPoint2D5;
+            catLine2D5.EndPoint = catPoint2D6;
+
+            Line2D catLine2D6 = catFactory2D1.CreateLine(b / 2 - s / 2, h, b / 2 - s / 2, f);
+            catLine2D6.StartPoint = catPoint2D6;
+            catLine2D6.EndPoint = catPoint2D7;
+
+            Line2D catLine2D7 = catFactory2D1.CreateLine(b / 2 - s / 2, f, 0, f);
+            catLine2D7.StartPoint = catPoint2D7;
+            catLine2D7.EndPoint = catPoint2D8;
+
+            Line2D catLine2D8 = catFactory2D1.CreateLine(0, f, 0, 0);
+            catLine2D8.StartPoint = catPoint2D8;
+            catLine2D8.EndPoint = catPoint2D1;
+
+
+            // Skizzierer verlassen
+            hsp_catiaProfil.CloseEdition();
+            // Part aktualisieren
+            hsp_catiaPart.Part.Update();
+        }
     }
 }
